@@ -1,5 +1,5 @@
-@import url(../vendor/normalize.css);
-@import url(../fonts/font-face.css);
+@import url(./vendor/normalize.css);
+@import url(./fonts/font-face.css);
 
 .root {
 margin: 0 auto;
@@ -34,6 +34,7 @@ border: 1px solid #545454;
 
 .profile {
 margin: 0 auto;
+padding-bottom: 50px;
 width: 882px;
 min-height: 120px;
 display: flex;
@@ -48,11 +49,10 @@ border-radius: 50%;
 }
 
 .profile__info {
-width: 295px;
+width: 298px;
 padding: 18px 17px 25px 30px;
 }
 .profile__name {
-height: 43px;
 margin: 0;
 padding: 0;
 font-family: 'Inter';
@@ -94,4 +94,72 @@ box-sizing: border-box;
 border-radius: 2px;
 display:flex;
 justify-content: center;
+}
+
+.elements {
+margin: 0 auto;
+width: 882px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(2, 1fr);
+column-gap: 18px;
+row-gap: 20px;
+}
+
+.card {
+width: 282px;
+height: 361px;
+display: flex;
+flex-direction: column;
+background: #FFFFFF;
+border-radius: 15px 15px 10px 10px;
+}
+
+.card__image {
+width: 282px;
+height: 282px;
+border-radius: 10px 10px 0px 0px;
+overflow: cover;
+}
+
+.card__info {
+width: 246px;
+padding: 25px 15px 31px 21px;
+display: flex;
+justify-content: space-between;
+}
+
+.card__title {
+margin: 0;
+padding: 0;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 1.2;
+color: #000000;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+}
+
+.card__like {
+margin: 6px 3px 0 20px;
+}
+
+.footer {
+margin: 0 auto;
+width: 882px;
+min-height: 78px;
+}
+
+.footer__title {
+width: 318px;
+margin: 66px 0 0 0;
+font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 1.22;
+color: #545454;
 }

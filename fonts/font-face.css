@@ -8,12 +8,12 @@
 }
   
 @font-face {
-  src: url(./Inter/Inter-Bold.woff2) format('woff2'),
-  url(./Inter/Inter-Bold.woff) format('woff'),
-  url(./Inter/Inter-Bold.ttf) format('truetype'),
-  url(./Inter/Inter-Bold.otf) format('otf');
+  src: url(./Inter/Inter-SemiBold.woff2) format('woff2'),
+  url(./Inter/Inter-SemiBold.woff) format('woff'),
+  url(./Inter/Inter-SemiBold.ttf) format('truetype'),
+  url(./Inter/Inter-SemiBold.otf) format('otf');
   font-family: 'Inter';
-  font-weight: bold;
+  font-weight: 500;
 }
   
 @font-face {
