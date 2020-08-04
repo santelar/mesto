@@ -1,0 +1,17 @@
+.popup__edit-name {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #000000;
+  margin: 54px 0 13px 0;
+}
+
+@media screen and (max-width: 620px) {
+  .popup__edit-name {
+  margin: 35px 0 10px 0;
+  font-size: 10px;
+  line-height: 1.2;
+  }
+}

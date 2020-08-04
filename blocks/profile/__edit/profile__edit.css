@@ -1,4 +1,4 @@
-.profile__square {
+.profile__edit {
   margin: 20px 0 0 17px;
   padding: 7px;
   width: 24px;
@@ -8,11 +8,15 @@
   text-align: center;
 }
 
+.profile__edit:hover {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
 @media screen and (max-width: 940px) {
-  .profile__square {
+  .profile__edit {
   width: 20px;
   height: 20px;
   padding: 5px;
-  margin: 4px 0 0 17px;
+  margin: 4px 0 0 12px;
   }
 }
