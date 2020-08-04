@@ -1,0 +1,21 @@
+.header {
+margin: 0 auto;
+max-width: 882px;
+height: 159px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+}
+
+@media screen and (max-width: 940px) {
+  .header {
+  max-width: 582px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .header {
+  max-width: 320px;
+  height: 126px;
+  }
+}

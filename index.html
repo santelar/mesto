@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto - Russia</title>
 </head>
@@ -18,14 +18,15 @@
     <section class="profile">
       <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <div class="profile__author">
+          <p class="profile__name">Жак-Ив Кусто</p>
+          <img src="./images/profile__edit.svg" alt="Изм." class="profile__square">
+        </div>
         <p class="profile__description">Исследователь океана</p>
       </div>
-      <div class="profile__square">
-        <img src="./images/profile__edit.svg" alt="Изм." class="profile__edit">
-      </div>
-      <div class="add-button">
-        <img src="./images/add-button__plus.svg" alt="Добавить" class="add-button__plus">
+
+      <div class="profile__add-button">
+        <img src="./images/add-button__plus.svg" alt="Добавить">
       </div>
     </section>
 
