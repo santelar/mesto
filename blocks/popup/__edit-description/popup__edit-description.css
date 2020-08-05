@@ -1,4 +1,6 @@
 .popup__edit-description {
+  border: none;
+  outline: none;
   font-family: 'Inter';
   font-style: normal;
   font-weight: normal;
