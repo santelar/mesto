@@ -1,5 +1,5 @@
 .profile__edit {
-  margin: 20px 0 0 17px;
+  margin: 0px 0 0 17px;
   padding: 7px;
   width: 24px;
   height: 24px;
@@ -18,6 +18,12 @@
   width: 20px;
   height: 20px;
   padding: 5px;
-  margin: 4px 0 0 12px;
+  margin: 0 0 10px 0;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .profile__edit {
+  margin: 0 0 0 12px;
   }
 }
