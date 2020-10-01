@@ -1,18 +1,11 @@
 .footer__title {
-
-margin: 66px 0 60px 0;
-font-family: inherit;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 1.22;
-color: #545454;
-}
-
-@media screen and (max-width: 940px) {
-  .footer__title {
-  
-  }
+  margin: 66px 0 60px 0;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #545454;
 }
 
 @media screen and (max-width: 620px) {

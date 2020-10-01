@@ -19,6 +19,7 @@
   @media screen and (max-width: 620px) {
   .profile__description {
   max-width: 220px;
-  text-align: center;
+  font-size: 14px;
+  margin: 0 auto;
   }
 }
