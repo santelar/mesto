@@ -1,9 +1,9 @@
-.button_add-card {
+.button_add_card {
   margin-left: auto;
 }
 
 @media screen and (max-width: 620px) {
-  .button_add-card {
+  .button_add_card {
   margin-left: 0px;
   margin: auto;
   }

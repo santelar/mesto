@@ -1,9 +1,0 @@
-.popup__edit_name {
-  padding: 54px 0 13px 0;
-}
-
-@media screen and (max-width: 620px) {
-  .popup__edit_name {
-  margin: 35px 0 10px 0;
-  }
-}

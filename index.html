@@ -20,9 +20,9 @@
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button type="button" class="button"><img src="./images/profile__edit.svg" 
         alt="Изм." class="profile__edit"></button>
-        <h3 class="profile__description">Исследователь океана</h3>
+        <p class="profile__description">Исследователь океана</p>
       </div>
-      <button type="button" class="button button_add-card"><img src="./images/add-button__plus.svg" 
+      <button type="button" class="button button_add_card"><img src="./images/add-button__plus.svg" 
       alt="Добавить" class="profile__add-button"></button>
     </section>
 
@@ -83,13 +83,13 @@
     <p class="footer__title">© 2020 Mesto Russia</p>
   </footer>
 
-  <form class="popup" name="popup">
-    <div class="popup__container">
+  <div class="popup" name="popup">
+    <form class="popup__container">
       <button type="button" class="button"><img src="./images/add-button__plus.svg" 
       alt="Закрыть" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__edit popup__edit_name" name="editName">
-      <input type="text" class="popup__edit popup__edit_description" name="editDescription">
+      <input type="text" class="popup__name" name="editName">
+      <input type="text" class="popup__description" name="editDescription">
       <button type="submit" class="popup__save">Сохранить</button>
     </form>
   </div>
