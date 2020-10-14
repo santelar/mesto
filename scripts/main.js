@@ -31,7 +31,6 @@ const getItems = (data) => {
 
 const renderList = () => {
   const items = placesCards.map(element => getItems(element));
-  
 };
 
 renderList ();
@@ -46,34 +45,41 @@ renderList ();
 
 
 // Функция переноса в попап данных профайла при открытии попапа //
-function formOpenHandler () {
+function formProfileHandler () {
   nameInput.value = name.textContent;
   descriptionInput.value = description.textContent;
 }
 
-// Функция переключения класса попапа //
-let popupToggle = function () {
-  if (popup.classList.contains('popup_opened') !== true) {
-    formOpenHandler ();
+// Функция переключения класса попапа Имени//
+let popupToggleProfile = function () {
+  if (popupProfile.classList.contains('popup_opened') !== true) {
+    formProfileHandler ();
   }
-  popup.classList.toggle('popup_opened');
+  popupProfile.classList.toggle('popup_opened');
 }
+// Функция переключения класса попапа Карточки//
+let popupToggleCard = function () {
+  if (popupCard.classList.contains('popup_opened') !== true) {
+  }
+  popupCard.classList.toggle('popup_opened');
+}
+
 
 // Функция сохранения //
 function formSubmitHandler (event) {
   event.preventDefault();
   name.textContent = nameInput.value;
   description.textContent = descriptionInput.value;
-  popupToggle ();
+  popupToggleProfile ();
 }
 
-CardOpenButton.addEventListener('click', popupToggle);
+CardOpenButton.addEventListener('click', popupToggleCard);
 
 // Обработчик открытия попапа //
-profileOpenButton.addEventListener('click', popupToggle);
+profileOpenButton.addEventListener('click', popupToggleProfile);
 
 // Обработчик закрытия попапа без сохранения //
-popupClose.addEventListener('click', popupToggle);
+popupClose.addEventListener('click', popupToggleProfile);
 
 // Обработчик сохранения //
 popupProfile.addEventListener('submit', formSubmitHandler);
