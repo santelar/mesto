@@ -26,8 +26,71 @@
       alt="Добавить" class="profile__add-button"></button>
     </section>
 
-    <section class="elements">
-      <div class="card">
+    <section class="elements"></section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__title">© 2020 Mesto Russia</p>
+  </footer>
+
+  <div class="popup popup_profile">
+    <div class="popup__container">
+
+      <button type="button" class="button"><img src="./images/add-button__plus.svg" 
+      alt="Закрыть" class="popup__close"></button>
+
+      <h2 class="popup__title popup__title_name">Редактировать профиль</h2>
+
+      <form class="popup__form" name="form" method="POST">
+        <input type="text" class="popup__name" name="editName">
+        <input type="text" class="popup__description" name="editDescription">
+        <button type="submit" class="popup__save">Сохранить</button>
+
+      </form>
+    </div>
+  </div>
+  <!--<div class="popup popup_card">
+    <div class="popup__container">
+
+      <button type="button" class="button"><img src="./images/add-button__plus.svg" 
+      alt="Закрыть" class="popup__close"></button>
+
+      <h2 class="popup__title  popup__title_card">Новое место</h2>
+
+      <form class="popup__form" name="form" method="POST">
+        <input type="text" class="popup__name" name="editName">
+        <input type="text" class="popup__description" name="editDescription">
+        <button type="submit" class="popup__save">Сохранить</button>
+
+      </form>
+    </div>
+  </div>-->
+
+  <template class="template">
+    <div class="card">
+      <img class="card__image">
+      <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button type="button" class="button"><img src="./images/card__like.svg" 
+        alt="Лайк" class="card__like"></button>
+      </div>
+  </template>
+
+  <script src="./scripts/main.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<!-- <div class="card">
         <img src="./images/moscow.jpg" alt="Фото - Москва" class="card__image">
         <div class="card__info">
           <h2 class="card__title">Москва</h2>
@@ -74,30 +137,4 @@
           <button type="button" class="button"><img src="./images/card__like.svg" 
           alt="Лайк" class="card__like"></button>
         </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <p class="footer__title">© 2020 Mesto Russia</p>
-  </footer>
-
-  <div class="popup">
-    <div class="popup__container">
-      <button type="button" class="button"><img src="./images/add-button__plus.svg" 
-      alt="Закрыть" class="popup__close"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="form" method="POST">
-        <input type="text" class="popup__name" name="editName">
-        <input type="text" class="popup__description" name="editDescription">
-        <button type="submit" class="popup__save">Сохранить</button>
-      </form>
-    </div>
-  </div>
-
-  <script src="./scripts/main.js"></script>
-
-</body>
-
-</html>
+      </div> -->
