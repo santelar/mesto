@@ -3,7 +3,7 @@ let popupProfile = document.querySelector('.popup_profile');
 let popupCard = document.querySelector('.popup_card');
 let profileOpenButton = document.querySelector('.profile__edit');
 let popupClose = document.querySelector('.popup__close');
-let CardOpenButton = document.querySelector('.button_add_card');
+let cardOpenButton = document.querySelector('.button_add_card');
 let name = document.querySelector('.profile__name');
 let description = document.querySelector('.profile__description');
 let nameInput = document.querySelector('.popup__name');
@@ -26,7 +26,6 @@ const getItems = (data) => {
   card.querySelector('.card__image').setAttribute('src', data.link);
   card.querySelector('.card__image').setAttribute('alt', data.name);
   elements.prepend(card);
-  console.log(card);
 };
 
 const renderList = () => {
@@ -44,24 +43,17 @@ renderList ();
 
 
 
-// Функция переноса в попап данных профайла при открытии попапа //
+// Функция переноса в попап данных профайла при открытии попапа Name //
 function formProfileHandler () {
   nameInput.value = name.textContent;
   descriptionInput.value = description.textContent;
 }
 
-// Функция переключения класса попапа Имени//
-let popupToggleProfile = function () {
-  if (popupProfile.classList.contains('popup_opened') !== true) {
-    formProfileHandler ();
+let popupToggle = (popupType) => {
+  if popup.classList.contains('.card popup') {
+    formProfileHandler ()
   }
-  popupProfile.classList.toggle('popup_opened');
-}
-// Функция переключения класса попапа Карточки//
-let popupToggleCard = function () {
-  if (popupCard.classList.contains('popup_opened') !== true) {
-  }
-  popupCard.classList.toggle('popup_opened');
+  popupType.classList.toggle('popup_opened');
 }
 
 
@@ -70,16 +62,17 @@ function formSubmitHandler (event) {
   event.preventDefault();
   name.textContent = nameInput.value;
   description.textContent = descriptionInput.value;
-  popupToggleProfile ();
+  popupToggle ();
 }
 
-CardOpenButton.addEventListener('click', popupToggleCard);
+
 
 // Обработчик открытия попапа //
-profileOpenButton.addEventListener('click', popupToggleProfile);
+profileOpenButton.addEventListener('click', () => popupToggle(popupProfile));
+cardOpenButton.addEventListener('click', () => popupToggle(popupCard));
 
 // Обработчик закрытия попапа без сохранения //
-popupClose.addEventListener('click', popupToggleProfile);
+popupClose.addEventListener('click', () => popupToggle(popupProfile));
 
 // Обработчик сохранения //
 popupProfile.addEventListener('submit', formSubmitHandler);
