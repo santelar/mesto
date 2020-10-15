@@ -75,8 +75,8 @@ profileOpenButton.addEventListener('click', () => {
 cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
 
 // Обработчик закрытия попапа без сохранения //
-popup.addEventListener('click', popupToggle);
-cardClose.addEventListener('click', () => popupToggle(cardPopup));
+profileClose.addEventListener('click', popupToggle);
+//cardClose.addEventListener('click', () => popupToggle(cardPopup));
 
 // Обработчик сохранения //
 popup.addEventListener('submit', () => formSubmitHandler(formProfile));
