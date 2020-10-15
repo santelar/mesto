@@ -1,13 +1,16 @@
 let popup = document.querySelector('.popup');
-let popupProfile = document.querySelector('.popup_profile');
-let popupCard = document.querySelector('.popup_card');
+let profilePopup = document.querySelector('.popup_profile');
+let cardPopup = document.querySelector('.popup_card');
 let profileOpenButton = document.querySelector('.profile__edit');
-let popupClose = document.querySelector('.popup__close');
 let cardOpenButton = document.querySelector('.button_add_card');
+let profileClose = document.querySelector('popup__close_profile');
+let cardClose = document.querySelector('popup__close_card');
 let name = document.querySelector('.profile__name');
 let description = document.querySelector('.profile__description');
 let nameInput = document.querySelector('.popup__name');
 let descriptionInput = document.querySelector('.popup__description');
+let saveProfile = document.querySelector('popup__save');
+let formProfile = document.querySelector('popup__form');
 
 const placesCards = [
   { name: 'Москва', link: './images/moscow.jpg'},
@@ -50,16 +53,13 @@ function formProfileHandler () {
 }
 
 let popupToggle = (popupType) => {
-  if popup.classList.contains('.card popup') {
-    formProfileHandler ()
-  }
   popupType.classList.toggle('popup_opened');
 }
 
 
 // Функция сохранения //
-function formSubmitHandler (event) {
-  event.preventDefault();
+function formSubmitHandler (submitType) {
+  //popupType.preventDefault(); //??????????????????????????????????
   name.textContent = nameInput.value;
   description.textContent = descriptionInput.value;
   popupToggle ();
@@ -68,13 +68,17 @@ function formSubmitHandler (event) {
 
 
 // Обработчик открытия попапа //
-profileOpenButton.addEventListener('click', () => popupToggle(popupProfile));
-cardOpenButton.addEventListener('click', () => popupToggle(popupCard));
+profileOpenButton.addEventListener('click', () => {
+  popupToggle(profilePopup);
+  formProfileHandler ();
+  });
+cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
 
 // Обработчик закрытия попапа без сохранения //
-popupClose.addEventListener('click', () => popupToggle(popupProfile));
+popup.addEventListener('click', popupToggle);
+cardClose.addEventListener('click', () => popupToggle(cardPopup));
 
 // Обработчик сохранения //
-popupProfile.addEventListener('submit', formSubmitHandler);
+popup.addEventListener('submit', () => formSubmitHandler(formProfile));
 
 
