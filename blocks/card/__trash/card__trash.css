@@ -1,0 +1,8 @@
+.card__trash {
+width: 18px;
+height: 15px;
+position: relative;
+top: -238px;
+left: 245px;
+z-index: 2;
+}

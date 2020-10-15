@@ -34,7 +34,7 @@
     <p class="footer__title">© 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup popup_profile">
+  <div class="popup popup__profile">
     <div class="popup__container">
 
       <button type="button" class="button"><img src="./images/add-button__plus.svg" 
@@ -43,15 +43,15 @@
       <h2 class="popup__title popup__title_name">Редактировать профиль</h2>
 
       <form class="popup__form" name="form" method="POST">
-        <input type="text" class="popup__name" name="editName">
-        <input type="text" class="popup__description" name="editDescription">
+        <input type="text" class="popup__name popup__name_profile" name="editName">
+        <input type="text" class="popup__description popup__description_profile" name="editDescription">
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
 
     </div>
   </div>
 
-  <div class="popup popup_card">
+  <div class="popup popup__card">
     <div class="popup__container">
 
       <button type="button" class="button"><img src="./images/add-button__plus.svg" 
@@ -60,9 +60,11 @@
       <h2 class="popup__title popup__title_card">Новое место</h2>
 
       <form class="popup__form" name="form" method="POST">
-        <input type="text" placeholder="Название" class="popup__name" name="editName">
-        <input type="text" placeholder="Ссылка на картинку" class="popup__description" name="editDescription">
-        <button type="submit" class="popup__save">Сохранить</button>
+        <input type="text" placeholder="Название" class="popup__name popup__name_card" 
+        name="editName">
+        <input type="text" placeholder="Ссылка на картинку" class="popup__description 
+        popup__description_card" name="editDescription">
+        <button type="submit" class="popup__save popup__save_Card">Сохранить</button>
       </form>
 
     </div>
@@ -70,7 +72,8 @@
 
   <template class="template">
     <div class="card">
-      <img class="card__image">
+      <img src="" class="card__image" alt="">
+      <img src="./images/trash.svg" class="card__trash" alt="Удалить">
       <div class="card__info">
         <h2 class="card__title"></h2>
         <button type="button" class="button"><img src="./images/card__like.svg" 
