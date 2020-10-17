@@ -19,6 +19,8 @@ let cardSave = document.querySelector('.popup__save_Card');
 let template = document.querySelector('.template');
 let elements = document.querySelector('.elements');
 
+
+
 //Массив и его загрузка на страницу//
 const placesCards = [
   { name: 'Москва', link: './images/moscow.jpg'},
@@ -34,9 +36,11 @@ const getItems = (data) => {
   card.querySelector('.card__title').innerText = data.name;
   card.querySelector('.card__image').src = data.link;
   card.querySelector('.card__image').alt = data.name;
-  //card.querySelector('.button_like').addEventListener('click', cardLike);
-  card.querySelector('.button_delete').addEventListener('click', (event) => {
-    event.target.closest('.card').remove();
+  card.querySelector('.button__like').addEventListener('click', (event) => {
+  event.target.classList.toggle('button__like_activ');
+  });
+  card.querySelector('.button__delete').addEventListener('click', (event) => {
+  event.target.closest('.card').remove();
   });
   return card;
   };

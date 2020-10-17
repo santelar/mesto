@@ -1,0 +1,7 @@
+.button__like {
+  margin: 6px 3px 0 20px;
+}
+
+.button__like:hover {
+  cursor: pointer;
+}
