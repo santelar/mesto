@@ -49,27 +49,23 @@ const renderList = (card) => {
   };
 renderList ();
 
+//Добавление/удаление класса попапа popup_opened//
+let popupToggle = (popupType) => {
+  popupType.classList.toggle('popup_opened');
+};
+
 // Функция переноса в попап данных профайла при открытии попапа Name //
 function formProfileHandler () {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 };
 
-//Добавление класса попапа//
-let popupAdd = (popupType) => {
-  popupType.classList.add('popup_opened');
-};
-//Удаление класса попапа//
-let popupRemove = (popupType) => {
-  popupType.classList.remove('popup_opened');
-};
-
 // Функция сохранения Профайла//
-function submitProfile (event) {
-  event.preventDefault();
+function submitProfile () {
+  
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  popupRemove (profilePopup);
+  popupToggle (profilePopup);
 };
 
 //Функция сохранения НОВОЙ Карточки//
@@ -82,52 +78,24 @@ const submitCard = (event) => {
   elements.prepend(newCard);
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
-  popupRemove(cardPopup);
-  console.log('Done!');
+  popupToggle(cardPopup);
 };
-
-//Функция сохранения Карточки
-/*const submitCard = function (event) {
-  event.preventDefault();
-  const card = template.content.cloneNode(true);
-  card.querySelector('.card__title').innerText = cardNameInput.value;
-  card.querySelector('.card__image').src = cardDescriptionInput.value;
-  elements.prepend(card);
-  cardNameInput.value = '';
-  cardDescriptionInput.value = '';
-  popupRemove(cardPopup);
-
-  const submitCard = () =>
-cardPopup.addEventListener('click', () => {
-//const submitCard = () => {
-const newCard = getItems({
-  name: cardNameInput,
-  link: cardDescriptionInput
-  });
-elements.prepend(newCard);
-cardNameInput.value = '';
-cardDescriptionInput.value = '';
-popupRemove(cardPopup);
-console.log('Done!');
-});
-};*/
 
 // Обработчик открытия попапа //
 profileOpenButton.addEventListener('click', () => {
-  popupAdd(profilePopup);
+  popupToggle(profilePopup);
   formProfileHandler ();
   });
-cardOpenButton.addEventListener('click', () => popupAdd(cardPopup));
+cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
 
 // Обработчик закрытия попапа без сохранения //
-profileClose.addEventListener('click', () => popupRemove(profilePopup));
+profileClose.addEventListener('click', () => popupToggle(profilePopup));
 cardClose.addEventListener('click', () => {
-  popupRemove(cardPopup);
+  popupToggle(cardPopup);
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
 });
+
 // Обработчик сохранения //
 profilePopup.addEventListener('submit', submitProfile);
 cardPopup.addEventListener('submit', submitCard);
-
-//https://images.unsplash.com/photo-1602909543092-11fd98492545?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80
