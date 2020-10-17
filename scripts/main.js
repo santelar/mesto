@@ -19,26 +19,44 @@ let cardSave = document.querySelector('.popup__save_Card');
 let template = document.querySelector('.template');
 let elements = document.querySelector('.elements');
 
-//Массив и его звгрузка на страницу//
+//const cardLike
+
+const cardDelete = (event) => {
+  event.target.closest('.card').remove();
+};
+
+
+
+
+
+
+
+//Массив и его загрузка на страницу//
 const placesCards = [
-  { name: 'Карелия', link: './images/karelia.jpg'},
-  { name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
-  { name: 'Камчатка', link: './images/kamchatka.jpg'},
-  { name: 'Екатеринбург', link: './images/ekaterinburg.jpg'},
+  { name: 'Москва', link: './images/moscow.jpg'},
   { name: 'Байкал', link: './images/baykal.jpg'},
-  { name: 'Москва', link: './images/moscow.jpg'}
-]; 
+  { name: 'Екатеринбург', link: './images/ekaterinburg.jpg'},
+  { name: 'Камчатка', link: './images/kamchatka.jpg'},
+  { name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
+  { name: 'Карелия', link: './images/karelia.jpg'}
+ ]; 
+//Ф-ция создания блока картинки из темплейта - на вход имя и линк//
 const getItems = (data) => {
   const card = template.content.cloneNode(true);
   card.querySelector('.card__title').innerText = data.name;
   card.querySelector('.card__image').src = data.link;
   card.querySelector('.card__image').alt = data.name;
-  elements.prepend(card);
-  
-};
-const renderList = () => {
-  const items = placesCards.map(element => getItems(element));
+  const likeButton = card.querySelector('.button_like');
+  const deleteButton = card.querySelector('.button_delete');
+  //likeButton.addEventListener('click', cardLike);
+  deleteButton.addEventListener('click', cardDelete);
+  return card;
+  };
 
+//Ф-ция разбивки массива на элементы и отрисовка элементов массива//
+const renderList = (card) => {
+  const items = placesCards.map(element => getItems(element));
+  elements.append(...items);
   };
 renderList ();
 
@@ -65,15 +83,30 @@ function submitProfile (event) {
   popupRemove (profilePopup);
 };
 
-//Функция сохранения Карточки//
-const submitCard = (getItems) => {
-  card.querySelector('.card__title').innerText = cardNameInput;
-  card.querySelector('.card__image').src = cardDescriptionInput;
-  card.querySelector('.card__image').alt = cardNameInput;
+//Функция сохранения Карточки
+const submitCard = function (event) {
+  event.preventDefault();
+  const card = template.content.cloneNode(true);
+  card.querySelector('.card__title').innerText = cardNameInput.value;
+  card.querySelector('.card__image').src = cardDescriptionInput.value;
   elements.prepend(card);
+  cardNameInput.value = '';
+  cardDescriptionInput.value = '';
+  popupRemove(cardPopup);
 };
-submitCard ();
 
+
+/*
+const submitCard = (data) => {
+const newCard = getItems = () => {
+  card.querySelector('.card__title').innerText = cardNameInput.value;
+  card.querySelector('.card__image').src = cardDescriptionInput.value;
+  };
+elements.prepend(newCard);
+cardNameInput.value = '';
+cardDescriptionInput.value = '';
+popupRemove(cardPopup);
+};*/
 
 
 // Обработчик открытия попапа //
@@ -89,4 +122,6 @@ cardClose.addEventListener('click', () => popupRemove(cardPopup));
 
 // Обработчик сохранения //
 profilePopup.addEventListener('submit', submitProfile);
-cardSave.addEventListener('submit', submitCard);
+cardPopup.addEventListener('submit', submitCard);
+
+//https://images.unsplash.com/photo-1602909543092-11fd98492545?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80
