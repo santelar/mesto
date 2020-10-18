@@ -17,6 +17,7 @@ let cardClose = document.querySelector('.popup__close_card');
 let cardNameInput = document.querySelector('.popup__name_card');
 let cardDescriptionInput = document.querySelector('.popup__description_card');
 let cardSave = document.querySelector('.popup__save_Card');
+let cardImage = document.querySelector('.header');
 
 //Массив картинок//
 const placesCards = [
@@ -27,6 +28,7 @@ const placesCards = [
   { name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
   { name: 'Карелия', link: './images/karelia.jpg'}
  ]; 
+
 //Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка//
 function getItems (data) {
   const card = template.content.cloneNode(true);
@@ -61,8 +63,8 @@ function formProfileHandler () {
 };
 
 // Функция сохранения Профайла//
-function submitProfile () {
-  
+function submitProfile (event) {
+  event.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   popupToggle (profilePopup);
@@ -80,6 +82,13 @@ const submitCard = (event) => {
   cardDescriptionInput.value = '';
   popupToggle(cardPopup);
 };
+
+
+const cardImageFullSize = () => {
+  console.log('Full size!');
+};
+
+cardImage.addEventListener('click', cardImageFullSize);
 
 // Обработчик открытия попапа //
 profileOpenButton.addEventListener('click', () => {
