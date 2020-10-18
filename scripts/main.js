@@ -1,22 +1,22 @@
-let popup = document.querySelector('.popup');
-let popupClose = document.querySelector('.popup__close')
-let template = document.querySelector('.template');
-let elements = document.querySelector('.elements');
+const popup = document.querySelector('.popup');
+const popupClose = document.querySelector('.popup__close')
+const template = document.querySelector('.template');
+const elements = document.querySelector('.elements');
 
-let profilePopup = document.querySelector('.popup__profile');
-let profileOpenButton = document.querySelector('.profile__edit');
-let profileClose = document.querySelector('.popup__close_profile');
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
-let profileNameInput = document.querySelector('.popup__name_profile');
-let profileDescriptionInput = document.querySelector('.popup__description_profile');
+const profilePopup = document.querySelector('.popup__profile');
+const profileOpenButton = document.querySelector('.profile__edit');
+const profileClose = document.querySelector('.popup__close_profile');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
+const profileNameInput = document.querySelector('.popup__name_profile');
+const profileDescriptionInput = document.querySelector('.popup__description_profile');
 
-let cardPopup = document.querySelector('.popup__card');
-let cardOpenButton = document.querySelector('.button_add_card');
-let cardClose = document.querySelector('.popup__close_card');
-let cardNameInput = document.querySelector('.popup__name_card');
-let cardDescriptionInput = document.querySelector('.popup__description_card');
-let cardSave = document.querySelector('.popup__save_Card');
+const cardPopup = document.querySelector('.popup__card');
+const cardOpenButton = document.querySelector('.button_add_card');
+const cardClose = document.querySelector('.popup__close_card');
+const cardNameInput = document.querySelector('.popup__name_card');
+const cardDescriptionInput = document.querySelector('.popup__description_card');
+const cardSave = document.querySelector('.popup__save_Card');
 
 const imagePopup = document.querySelector('.popup__image');
 const imagePlace = document.querySelector('.popup__image-place');
@@ -34,7 +34,7 @@ const placesCards = [
  ]; 
 
  //Добавление/удаление класса попапа popup_opened//
- let popupToggle = (popupType) => {
+ const popupToggle = (popupType) => {
   popupType.classList.toggle('popup_opened');
 };
 
