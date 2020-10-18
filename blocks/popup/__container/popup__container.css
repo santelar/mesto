@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 620px) {
-  .popup__container_profile {
+  .popup__container {
   width: 282px;
   padding: 0 22px 25px 22px;
   }

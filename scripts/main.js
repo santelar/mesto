@@ -17,17 +17,26 @@ let cardClose = document.querySelector('.popup__close_card');
 let cardNameInput = document.querySelector('.popup__name_card');
 let cardDescriptionInput = document.querySelector('.popup__description_card');
 let cardSave = document.querySelector('.popup__save_Card');
-let cardImage = document.querySelector('.header');
+
+const imagePopup = document.querySelector('.popup__image');
+const imagePlace = document.querySelector('.popup__image-place');
+const imageName = document.querySelector('.popup__image-name');
+const imageClose = document.querySelector('.popup__close_image');
 
 //Массив картинок//
 const placesCards = [
   { name: 'Москва', link: './images/moscow.jpg'},
   { name: 'Байкал', link: './images/baykal.jpg'},
-  { name: 'Екатеринбург', link: './images/ekaterinburg.jpg'},
+  { name: 'Крым', link: './images/Crimea.jpg'},
   { name: 'Камчатка', link: './images/kamchatka.jpg'},
   { name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
   { name: 'Карелия', link: './images/karelia.jpg'}
  ]; 
+
+ //Добавление/удаление класса попапа popup_opened//
+ let popupToggle = (popupType) => {
+  popupType.classList.toggle('popup_opened');
+};
 
 //Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка//
 function getItems (data) {
@@ -35,14 +44,24 @@ function getItems (data) {
   card.querySelector('.card__title').innerText = data.name;
   card.querySelector('.card__image').src = data.link;
   card.querySelector('.card__image').alt = data.name;
+
   card.querySelector('.button__like').addEventListener('click', (event) => {
   event.target.classList.toggle('button__like_activ');
   });
+
   card.querySelector('.button__delete').addEventListener('click', (event) => {
   event.target.closest('.card').remove();
   });
+
+  card.querySelector('.card__image').addEventListener('click', () => {
+  document.querySelector('.popup__image-place').src = data.link;
+  document.querySelector('.popup__image-name').textContent = data.name;
+  document.querySelector('.popup__image-place').alt = data.name;
+  popupToggle(imagePopup);
+});
+  
   return card;
-  };
+};
 
 //Ф-ция разбивки массива на элементы и отрисовка элементов массива//
 const renderList = (card) => {
@@ -50,11 +69,6 @@ const renderList = (card) => {
   elements.append(...items);
   };
 renderList ();
-
-//Добавление/удаление класса попапа popup_opened//
-let popupToggle = (popupType) => {
-  popupType.classList.toggle('popup_opened');
-};
 
 // Функция переноса в попап данных профайла при открытии попапа Name //
 function formProfileHandler () {
@@ -83,13 +97,6 @@ const submitCard = (event) => {
   popupToggle(cardPopup);
 };
 
-
-const cardImageFullSize = () => {
-  console.log('Full size!');
-};
-
-cardImage.addEventListener('click', cardImageFullSize);
-
 // Обработчик открытия попапа //
 profileOpenButton.addEventListener('click', () => {
   popupToggle(profilePopup);
@@ -104,6 +111,7 @@ cardClose.addEventListener('click', () => {
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
 });
+imageClose.addEventListener('click', () => popupToggle(imagePopup));
 
 // Обработчик сохранения //
 profilePopup.addEventListener('submit', submitProfile);

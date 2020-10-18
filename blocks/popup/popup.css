@@ -5,8 +5,10 @@
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, .5);
-  z-index: 10;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+  opacity: 0.05;
+  transition: visibility 1s, opacity 1s linear;
 }
