@@ -1,5 +1,3 @@
-const popup = document.querySelector('.popup');
-const popupClose = document.querySelector('.popup__close')
 const template = document.querySelector('.template');
 const elements = document.querySelector('.elements');
 
@@ -16,11 +14,8 @@ const cardOpenButton = document.querySelector('.button_add_card');
 const cardClose = document.querySelector('.popup__close_card');
 const cardNameInput = document.querySelector('.popup__name_card');
 const cardDescriptionInput = document.querySelector('.popup__description_card');
-const cardSave = document.querySelector('.popup__save_Card');
 
 const imagePopup = document.querySelector('.popup__image');
-const imagePlace = document.querySelector('.popup__image-place');
-const imageName = document.querySelector('.popup__image-name');
 const imageClose = document.querySelector('.popup__close_image');
 
 //Массив картинок//
@@ -28,7 +23,7 @@ const placesCards = [
   { name: 'Москва', link: './images/moscow.jpg'},
   { name: 'Байкал', link: './images/baykal.jpg'},
   { name: 'Крым', link: './images/Crimea.jpg'},
-  { name: 'Камчатка', link: './images/kamchatka.jpg'},
+  { name: 'Санкт-Петербург', link: './images/piter.jpg'},
   { name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
   { name: 'Карелия', link: './images/karelia.jpg'}
  ]; 
@@ -58,7 +53,7 @@ function getItems (data) {
   document.querySelector('.popup__image-name').textContent = data.name;
   document.querySelector('.popup__image-place').alt = data.name;
   popupToggle(imagePopup);
-});
+  });
   
   return card;
 };
@@ -67,7 +62,7 @@ function getItems (data) {
 const renderList = (card) => {
   const items = placesCards.map(element => getItems(element));
   elements.append(...items);
-  };
+};
 renderList ();
 
 // Функция переноса в попап данных профайла при открытии попапа Name //
@@ -101,7 +96,7 @@ const submitCard = (event) => {
 profileOpenButton.addEventListener('click', () => {
   popupToggle(profilePopup);
   formProfileHandler ();
-  });
+});
 cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
 
 // Обработчик закрытия попапа без сохранения //
