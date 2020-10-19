@@ -1,7 +1,1 @@
 .popup__image-container {
-    border: 3px solid red;
-    position: relative;
-    max-width: 75vw;
-    max-height: 75vh;
-    overflow: hidden;
-}

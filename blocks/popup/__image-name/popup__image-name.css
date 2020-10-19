@@ -1,11 +1,11 @@
 .popup__image-name {
-margin: 10 0 0 0;
-padding: 0px;
-max-width: 75%;
-font-family: inherit;
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
-line-height: 1.2;
-color: #FFFFFF;
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #FFFFFF;
 }

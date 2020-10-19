@@ -1,10 +1,16 @@
 .popup__close_image {
   position: absolute;
-  top: 7vh;
-  left: 65vw;
+  top: -3%;
+  left: 100%;
 }
 
 .popup__close_image:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+  .popup__close_image {
+    top: -1%;
+  }
 }
