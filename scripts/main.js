@@ -20,16 +20,6 @@ const imageClose = document.querySelector('.popup__close_image');
 const imagePlace = document.querySelector('.popup__image-place');
 const imageName = document.querySelector('.popup__image-name');
 
-//Массив картинок//
-//const placesCards = [
-  //{ name: 'Москва', link: './images/moscow.jpg'},
-  //{ name: 'Байкал', link: './images/baykal.jpg'},
-  //{ name: 'Владивосток', link: './images/vladivostok.jpg'},
-  //{ name: 'Санкт-Петербург', link: './images/piter.jpg'},
-  //{ name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
-  //{ name: 'Карелия', link: './images/karelia.jpg'}
- //]; 
-
  //Добавление/удаление класса попапа popup_opened//
  const popupToggle = (popupType) => {
   popupType.classList.toggle('popup_opened');
@@ -62,7 +52,7 @@ function getItems (data) {
 }
 
 //Ф-ция разбивки массива на элементы и отрисовка элементов массива//
-const renderList = (cards) => {
+const renderList = () => {
   const items = placesCards.map(element => getItems(element));
   elements.append(...items);
 };
