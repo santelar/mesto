@@ -1,8 +1,3 @@
-<<<<<<< HEAD:blocks/button/__like/button__like_activ.css
 .button__like_activ {
   background: url(/images/card__like_activ.svg);
-=======
-.card__like_activ {
-  background: url(images/card__like_activ.svg);
->>>>>>> 232231202c45bca49ce15bd554b51e4a5d475be3:blocks/card/__like/card__like_activ.css
 }
