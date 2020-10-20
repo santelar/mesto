@@ -40,8 +40,8 @@
       alt="Закрыть" class="popup__close popup__close_profile"></button>
       <h2 class="popup__title popup__title_name">Редактировать профиль</h2>
       <form class="popup__form" name="form" method="POST">
-        <input type="text" class="popup__name popup__name_profile" name="editName">
-        <input type="text" class="popup__description popup__description_profile" name="editDescription">
+        <input type="text" class="popup__name popup__name_profile" required name="editName">
+        <input type="text" class="popup__description popup__description_profile" required name="editDescription">
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
     </div>
@@ -54,7 +54,7 @@
       <form class="popup__form" name="form" method="POST">
         <input type="text" placeholder="Название" class="popup__name popup__name_card" 
         name="editName">
-        <input type="text" placeholder="Ссылка на картинку" class="popup__description 
+        <input type="url" placeholder="Ссылка на картинку" class="popup__description 
         popup__description_card" name="editDescription">
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
@@ -81,6 +81,7 @@
     </div>
   </template>
 
+  <script src="./scripts/imageMassive.js"></script>
   <script src="./scripts/main.js"></script>
 
 </body>

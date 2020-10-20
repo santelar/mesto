@@ -17,16 +17,18 @@ const cardDescriptionInput = document.querySelector('.popup__description_card');
 
 const imagePopup = document.querySelector('.popup__image');
 const imageClose = document.querySelector('.popup__close_image');
+const imagePlace = document.querySelector('.popup__image-place');
+const imageName = document.querySelector('.popup__image-name');
 
 //Массив картинок//
-const placesCards = [
-  { name: 'Москва', link: './images/moscow.jpg'},
-  { name: 'Байкал', link: './images/baykal.jpg'},
-  { name: 'Владивосток', link: './images/vladivostok.jpg'},
-  { name: 'Санкт-Петербург', link: './images/piter.jpg'},
-  { name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
-  { name: 'Карелия', link: './images/karelia.jpg'}
- ]; 
+//const placesCards = [
+  //{ name: 'Москва', link: './images/moscow.jpg'},
+  //{ name: 'Байкал', link: './images/baykal.jpg'},
+  //{ name: 'Владивосток', link: './images/vladivostok.jpg'},
+  //{ name: 'Санкт-Петербург', link: './images/piter.jpg'},
+  //{ name: 'Роща улица Желаний', link: './images/roscha_ulitsa_zhelaniy.jpg'},
+  //{ name: 'Карелия', link: './images/karelia.jpg'}
+ //]; 
 
  //Добавление/удаление класса попапа popup_opened//
  const popupToggle = (popupType) => {
@@ -36,9 +38,10 @@ const placesCards = [
 //Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка//
 function getItems (data) {
   const card = template.content.cloneNode(true);
+  const cardImage = card.querySelector('.card__image');
   card.querySelector('.card__title').innerText = data.name;
-  card.querySelector('.card__image').src = data.link;
-  card.querySelector('.card__image').alt = data.name;
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
 
   card.querySelector('.button__like').addEventListener('click', (event) => {
   event.target.classList.toggle('button__like_activ');
@@ -48,18 +51,18 @@ function getItems (data) {
   event.target.closest('.card').remove();
   });
 
-  card.querySelector('.card__image').addEventListener('click', () => {
-  document.querySelector('.popup__image-place').src = data.link;
-  document.querySelector('.popup__image-name').textContent = data.name;
-  document.querySelector('.popup__image-place').alt = data.name;
+  cardImage.addEventListener('click', () => {
+  imagePlace.src = data.link;
+  imageName.textContent = data.name;
+  imagePlace.alt = data.name;
   popupToggle(imagePopup);
   });
   
   return card;
-};
+}
 
 //Ф-ция разбивки массива на элементы и отрисовка элементов массива//
-const renderList = (card) => {
+const renderList = (cards) => {
   const items = placesCards.map(element => getItems(element));
   elements.append(...items);
 };
@@ -69,7 +72,7 @@ renderList ();
 function formProfileHandler () {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-};
+}
 
 // Функция сохранения Профайла//
 function submitProfile (event) {
@@ -77,7 +80,7 @@ function submitProfile (event) {
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   popupToggle (profilePopup);
-};
+}
 
 //Функция сохранения НОВОЙ Карточки//
 const submitCard = (event) => {
