@@ -15,12 +15,12 @@
 
 @import url(../blocks/button/button.css);
 @import url(../blocks/button/_add/button_add_card.css);
+@import url(../blocks/button/__like/button__like.css);
+@import url(../blocks/button/__like/button__like_activ.css);
 
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__image/card__image.css);
-@import url(../blocks/card/__like/card__like.css);
-@import url(../blocks/card/__like/card__like_activ.css);
 @import url(../blocks/card/__trash/card__trash.css);
 @import url(../blocks/card/__info/card__info.css);
 @import url(../blocks/card/__title/card__title.css);
