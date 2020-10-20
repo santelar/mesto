@@ -40,8 +40,8 @@ function getItems (data) {
   card.querySelector('.card__image').src = data.link;
   card.querySelector('.card__image').alt = data.name;
 
-  card.querySelector('.card__like').addEventListener('click', (event) => {
-  event.target.classList.toggle('button__like_activ');
+  card.querySelector('.button__like').addEventListener('click', (event) => {
+  event.target.classList.toggle('card__like_activ');
   });
 
   card.querySelector('.button__delete').addEventListener('click', (event) => {

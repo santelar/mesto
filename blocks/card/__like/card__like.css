@@ -1,7 +1,7 @@
-.button__like {
+.card__like {
   margin: 6px 3px 0 20px;
 }
 
-.button__like:hover {
+.card__like:hover {
   cursor: pointer;
 }
