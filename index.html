@@ -39,9 +39,13 @@
       <button type="button" class="button"><img src="./images/add-button__plus.svg" 
       alt="Закрыть" class="popup__close popup__close_profile"></button>
       <h2 class="popup__title popup__title_name">Редактировать профиль</h2>
-      <form class="popup__form" name="form" method="POST">
-        <input type="text" class="popup__name popup__name_profile" required name="editName">
-        <input type="text" class="popup__description popup__description_profile" required name="editDescription">
+      <form class="popup__form" name="user" method="POST" novalidate>
+        <input type="text" required minlength="2" maxlength="40" class="popup__name
+        popup__name_profile" name="user-name">
+        <span id="user-name-error" class="error"></span>
+        <input type="text" required minlength="2" maxlength="200" class="popup__description
+        popup__description_profile" name="user-description">
+        <span id="user-description-error" class="error"></span>
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
     </div>
@@ -51,11 +55,13 @@
       <button type="button" class="button"><img src="./images/add-button__plus.svg" 
       alt="Закрыть" class="popup__close popup__close_card"></button>
       <h2 class="popup__title popup__title_card">Новое место</h2>
-      <form class="popup__form" name="form" method="POST">
-        <input type="text" placeholder="Название" class="popup__name popup__name_card" 
-        name="editName">
-        <input type="url" placeholder="Ссылка на картинку" class="popup__description 
-        popup__description_card" name="editDescription">
+      <form class="popup__form" name="place" method="POST" novalidate>
+        <input type="text" required minlength="2" maxlength="30" placeholder="Название" class="popup__name popup__name_card" 
+        name="place-title">
+        <span id="place-title-error" class="error"></span>
+        <input type="url" required placeholder="Ссылка на картинку" class="popup__description 
+        popup__description_card" name="place-url">
+        <span id="place-url-error" class="error"></span>
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
     </div>
@@ -83,6 +89,7 @@
 
   <script src="./scripts/imageMassive.js"></script>
   <script src="./scripts/main.js"></script>
+  <script src="./scripts/forms.js"></script>
 
 </body>
 

@@ -104,3 +104,5 @@ imageClose.addEventListener('click', () => popupToggle(imagePopup));
 // Обработчик сохранения //
 profilePopup.addEventListener('submit', submitProfile);
 cardPopup.addEventListener('submit', submitCard);
+
+
