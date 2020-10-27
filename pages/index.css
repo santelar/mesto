@@ -38,9 +38,11 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__input/popup__input_name.css);
 @import url(../blocks/popup/__input/popup__input_description.css);
+@import url(../blocks/popup/__input/popup__input_invalid.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-button/popup__image-button.css);
 @import url(../blocks/popup/__image-place/popup__image-place.css);
 @import url(../blocks/popup/__image-name/popup__image-name.css);
 @import url(../blocks/popup/__save/popup__save.css);
+@import url(../blocks/popup/__save/popup__save_invalid.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
