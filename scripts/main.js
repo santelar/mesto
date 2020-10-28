@@ -102,6 +102,7 @@ document.addEventListener('keydown', (evt) => {
   if (evt.keyCode === 27) {
     popupRemove(profilePopup);
     popupRemove(cardPopup);
+    popupRemove(imagePopup);
   }
 });
 
