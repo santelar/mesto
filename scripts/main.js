@@ -1,7 +1,7 @@
 const template = document.querySelector('.template');
 const elements = document.querySelector('.elements');
-const popupInput = document.querySelector('.popup__input');
-const popup = document.querySelector('.popup');
+
+const inputSelector = document.querySelector('.popup__input');
 
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
@@ -135,3 +135,40 @@ imagePopup.addEventListener('click', (event) => {
 // Обработчик сохранения //
 profilePopup.addEventListener('submit', submitProfile);
 cardPopup.addEventListener('submit', submitCard);
+
+
+
+
+function formErrorClear({formSelector}) {
+  const formElements = Array.from(document.querySelectorAll(formSelector));
+  console.log(formElements);
+  formElements.forEach(form => {
+    console.log('form');
+    function inputClear ({formElement, inputSelector}) {
+      const inputElements = Array.from(formElement.querySelectorAll(inputSelector));
+      console.log('inputs');
+      inputElements.forEach((input) => {
+        console.log('input');
+      //hideError(formElement, input);
+      });
+    }
+  });
+}
+
+function formErrorClear({formSelector}) {
+  const formElements = Array.from(document.querySelectorAll('.popup__form'));
+  formElements.forEach(form => {
+    function inputClear ({formElement, inputSelector}) {
+      const inputElements = Array.from(formElement.querySelectorAll('.popup__input'));
+      inputElements.forEach((input) => {
+        hideError(formElement, input);
+      });
+    }
+  });
+}
+
+formErrorClear({
+formSelector: '.popup__form',
+inputSelector: '.popup__input'
+});
+
