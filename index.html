@@ -39,14 +39,14 @@
       <button type="button" class="button"><img src="./images/add-button__plus.svg" 
       alt="Закрыть" class="popup__close popup__close_profile"></button>
       <h2 class="popup__title popup__title_name">Редактировать профиль</h2>
-      <form class="popup__form" name="user" method="POST" enabled>
+      <form class="popup__form" name="user" method="POST">
         <input type="text" required autocomplete="off" minlength="2" maxlength="40" 
         class="popup__input popup__input_name popup__input_name-profile" id="user-name" name="name">
         <span id="user-name-error" class="error"></span>
         <input type="text" required autocomplete="off" minlength="2" maxlength="200" class="popup__input
         popup__input_description popup__input_description-profile" id="user-description" name="description">
         <span id="user-description-error" class="error"></span>
-        <button type="submit" class="popup__save">Сохранить</button>
+        <button type="submit" class="popup__save" >Сохранить</button>
       </form>
     </div>
   </div>
@@ -62,7 +62,7 @@
         <input type="url" required autocomplete="off" placeholder="Ссылка на картинку" 
         class="popup__input popup__input_description popup__input_url-card" id="card-url" name="url">
         <span id="card-url-error" class="error"></span>
-        <button type="submit" class="popup__save popup__save_invalid">Создать</button>
+        <button type="submit" class="popup__save popup__save_invalid" disabled>Создать</button>
       </form>
     </div>
   </div>
@@ -88,8 +88,8 @@
   </template>
 
   <script src="./scripts/imageMassive.js"></script>
-  <script src="./scripts/main.js"></script>
   <script src="./scripts/forms.js"></script>
+  <script src="./scripts/main.js"></script>
 
 </body>
 

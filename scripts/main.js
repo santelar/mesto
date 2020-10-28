@@ -1,7 +1,8 @@
 const template = document.querySelector('.template');
 const elements = document.querySelector('.elements');
-
+const popupInput = document.querySelector('.popup__input');
 const popup = document.querySelector('.popup');
+
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
 const profileClose = document.querySelector('.popup__close_profile');
@@ -24,13 +25,12 @@ const imageName = document.querySelector('.popup__image-name');
  //Добавление/удаление класса попапа popup_opened//
  const popupToggle = (popupType) => {
   popupType.classList.toggle('popup_opened');
-};
-
-// Закрытие попапа при клике вне попапа
-function closeOutPopup (event) {
-  if (event.target !== event.currentTarget) return 
-    popup.classList.remove('popup_opened');
 }
+
+ //Для закрытия попапа по ESC//
+ const popupRemove = (popupType) => {
+  popupType.classList.remove('popup_opened');
+ }
 
 //Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка//
 function getItems (data) {
@@ -99,38 +99,39 @@ profileOpenButton.addEventListener('click', () => {
 });
 cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
 
+//Закрытие попапа по ESC//
+document.addEventListener('keydown', (event) => {
+  if (event.keyCode === 27) {
+    popupRemove(profilePopup);
+    popupRemove(cardPopup);
+  }
+});
+
 // Обработчик закрытия попапа без сохранения //
 profileClose.addEventListener('click', () => {
   popupToggle(profilePopup);
 });
-profileClose.addEventListener('click', closeOutPopup);
+profilePopup.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) {popupToggle(profilePopup)
+  };
+});
 
 cardClose.addEventListener('click', () => {
   popupToggle(cardPopup);
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
 });
-cardClose.addEventListener('click', closeOutPopup);
+cardPopup.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) {popupToggle(cardPopup)
+  };
+});
 
 imageClose.addEventListener('click', () => popupToggle(imagePopup));
+imagePopup.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) {popupToggle(imagePopup)
+  };
+});
 
 // Обработчик сохранения //
 profilePopup.addEventListener('submit', submitProfile);
 cardPopup.addEventListener('submit', submitCard);
-
-/*
-=====================
-//Добавление/удаление класса попапа popup_opened//
- const popupToggle = (popupType, event) => {
-  popupType.classList.toggle('popup_opened');
-};
-=========================
-
-
-
-// Функция переключения класса попапа
-let popupToggle = function (popupType) {
-  popupType.classList.toggle('popup_opened');
-}
-
-popupSaveButton.addEventListener('click', closePopup);*/

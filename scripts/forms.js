@@ -1,18 +1,18 @@
-//Ф-ция - показать ошибку + подчеркнуто красным
+//Ф-ция - показать ошибку + подчеркнуто красным//
 function showError(formElement, input, {inputErrorClass}) {
   const errorElement = formElement.querySelector(`#${input.id}-error`);
   errorElement.textContent = input.validationMessage;
   input.classList.add(inputErrorClass);
 }
 
-//Ф-ция - убрать ошибку + убрать красную черту
+//Ф-ция - убрать ошибку + убрать красную черту//
 function hideError(formElement, input, {inputErrorClass}) {
   const errorElement = formElement.querySelector(`#${input.id}-error`);
   errorElement.textContent = '';
   input.classList.remove(inputErrorClass);
 }
 
-//Ф-ция проверки валидности - Ошибки показать/убрать
+//Ф-ция проверки валидности - Ошибки показать/убрать//
 function checkInputValidity(formElement, input, {...rest}) {
   if (input.checkValidity()) {
     hideError(formElement, input, {...rest});
@@ -21,7 +21,7 @@ function checkInputValidity(formElement, input, {...rest}) {
   }    
 }
 
-//Ф-ция переключения состояния кнопки Сохранить
+//Ф-ция переключения состояния кнопки Сохранить//
 function toggleButtonState(formElement, buttonElement, {submitButtonClass}) {
   if (formElement.checkValidity()) {
     buttonElement.classList.remove(submitButtonClass);
@@ -32,7 +32,7 @@ function toggleButtonState(formElement, buttonElement, {submitButtonClass}) {
   }
 }
 
-//Ф-ция - создание массива инпутов из формы и применение валидации к каждому 
+//Ф-ция - создание массива инпутов из формы и применение валидации к каждому //
 function setEventListeners(formElement, {inputSelector, submitButtonSelector, ...rest}) {
   const inputElements = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
@@ -44,7 +44,7 @@ function setEventListeners(formElement, {inputSelector, submitButtonSelector, ..
   });
 }
 
-//Ф-ция - создание массива форм из верстки и далее запуск ф-ции инпутов
+//Ф-ция - создание массива форм из верстки и далее запуск ф-ции инпутов//
 function enableValidation({formSelector, ...rest}) {
   const formElements = Array.from(document.querySelectorAll(formSelector));
   formElements.forEach(form => {
@@ -55,6 +55,7 @@ function enableValidation({formSelector, ...rest}) {
   });
 }
 
+// Запуск валидации//
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
