@@ -1,7 +1,5 @@
 const template = document.querySelector('.template');
 const elements = document.querySelector('.elements');
-const popupInput = document.querySelector('.popup__input');
-const popup = document.querySelector('.popup');
 
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
@@ -100,8 +98,8 @@ profileOpenButton.addEventListener('click', () => {
 cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
 
 //Закрытие попапа по ESC//
-document.addEventListener('keydown', (event) => {
-  if (event.keyCode === 27) {
+document.addEventListener('keydown', (evt) => {
+  if (evt.keyCode === 27) {
     popupRemove(profilePopup);
     popupRemove(cardPopup);
   }
