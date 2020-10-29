@@ -20,31 +20,31 @@ const imageClose = document.querySelector('.popup__close_image');
 const imagePlace = document.querySelector('.popup__image-place');
 const imageName = document.querySelector('.popup__image-name');
 
-//Ф-ция закрытия попапа по Esc//
+// Ф-ция закрытия попапа по Esc //
 const closePopupByEsc = (evt) => {
   if (evt.key === 'Escape') {
   removePopup(evt.currentTarget.querySelector('.popup_opened'));
   }
 }
 
-//Ф-ция открытия попапа + возможность закрыть попап по Esc//
+// Ф-ция открытия попапа + возможность закрыть попап по Esc //
 const addPopup = (popupType) => {
   popupType.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
 }
 
-//Ф-ция закрытия попапа//
+// Ф-ция закрытия попапа //
 const removePopup = (popupType) => {
   popupType.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEsc);
 }
 
-//Ф-ция дизейбла поапа добавления карточек//
+// Ф-ция дизейбла попапа добавления карточек //
 const ToggleStateButton = (popupType) => {
   popupType.querySelector('.popup__save').classList.add('popup__save_invalid');
 }
 
-//Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка//
+// Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка //
 function getItems (data) {
   const card = template.content.cloneNode(true);
   const cardImage = card.querySelector('.card__image');
