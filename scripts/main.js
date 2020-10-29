@@ -20,15 +20,29 @@ const imageClose = document.querySelector('.popup__close_image');
 const imagePlace = document.querySelector('.popup__image-place');
 const imageName = document.querySelector('.popup__image-name');
 
- //Добавление/удаление класса попапа popup_opened//
- const popupToggle = (popupType) => {
-  popupType.classList.toggle('popup_opened');
+//Ф-ция закрытия попапа по Esc//
+const closePopupByEsc = (evt) => {
+  if (evt.key === 'Escape') {
+  removePopup(evt.currentTarget.querySelector('.popup_opened'));
+  }
 }
 
- //Для закрытия попапа по ESC//
- const popupRemove = (popupType) => {
+//Ф-ция открытия попапа + возможность закрыть попап по Esc//
+const addPopup = (popupType) => {
+  popupType.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
+}
+
+//Ф-ция закрытия попапа//
+const removePopup = (popupType) => {
   popupType.classList.remove('popup_opened');
- }
+  document.removeEventListener('keydown', closePopupByEsc);
+}
+
+//Ф-ция дизейбла поапа добавления карточек//
+const ToggleStateButton = (popupType) => {
+  popupType.querySelector('.popup__save').classList.add('popup__save_invalid');
+}
 
 //Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка//
 function getItems (data) {
@@ -39,24 +53,24 @@ function getItems (data) {
   cardImage.alt = data.name;
 
   card.querySelector('.button__like').addEventListener('click', (event) => {
-  event.target.classList.toggle('button__like_activ');
+    event.target.classList.toggle('button__like_activ');
   });
 
   card.querySelector('.button__delete').addEventListener('click', (event) => {
-  event.target.closest('.card').remove();
+    event.target.closest('.card').remove();
   });
 
   cardImage.addEventListener('click', () => {
-  imagePlace.src = data.link;
-  imageName.textContent = data.name;
-  imagePlace.alt = data.name;
-  popupToggle(imagePopup);
+    imagePlace.src = data.link;
+    imageName.textContent = data.name;
+    imagePlace.alt = data.name;
+    addPopup(imagePopup);
   });
 
   return card;
 }
 
-//Ф-ция разбивки массива на элементы и отрисовка элементов массива//
+// Ф-ция разбивки массива на элементы и отрисовка элементов массива //
 const renderList = () => {
   const items = placesCards.map(element => getItems(element));
   elements.append(...items);
@@ -64,20 +78,20 @@ const renderList = () => {
 renderList ();
 
 // Функция переноса в попап данных профайла при открытии попапа Name //
-function formProfileHandler () {
+function fillProfilePopupInputs () {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 }
 
-// Функция сохранения Профайла//
+// Функция сохранения Профайла //
 function submitProfile (event) {
   event.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  popupToggle (profilePopup);
+  removePopup(profilePopup);
 }
 
-//Функция сохранения НОВОЙ Карточки//
+// Функция сохранения НОВОЙ Карточки //
 const submitCard = (event) => {
   event.preventDefault();
   const newCard = getItems({
@@ -87,47 +101,44 @@ const submitCard = (event) => {
   elements.prepend(newCard);
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
-  popupToggle(cardPopup);
+  removePopup(cardPopup);
 }
 
 // Обработчик открытия попапа //
 profileOpenButton.addEventListener('click', () => {
-  popupToggle(profilePopup);
-  formProfileHandler ();
+  addPopup(profilePopup);
+  fillProfilePopupInputs ();
 });
-cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
-
-//Закрытие попапа по ESC//
-document.addEventListener('keydown', (evt) => {
-  if (evt.keyCode === 27) {
-    popupRemove(profilePopup);
-    popupRemove(cardPopup);
-    popupRemove(imagePopup);
-  }
+cardOpenButton.addEventListener('click', () => {
+  cardNameInput.value = '';
+  cardDescriptionInput.value = '';
+  addPopup(cardPopup);
+  ToggleStateButton(cardPopup);
 });
 
 // Обработчик закрытия попапа без сохранения //
 profileClose.addEventListener('click', () => {
-  popupToggle(profilePopup);
+  removePopup(profilePopup);
 });
 profilePopup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {popupToggle(profilePopup)
+  if (event.target === event.currentTarget) {
+    removePopup(profilePopup);
   };
 });
 
 cardClose.addEventListener('click', () => {
-  popupToggle(cardPopup);
-  cardNameInput.value = '';
-  cardDescriptionInput.value = '';
+  removePopup(cardPopup);
 });
 cardPopup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {popupToggle(cardPopup)
+  if (event.target === event.currentTarget) {
+    removePopup(cardPopup);
   };
 });
 
-imageClose.addEventListener('click', () => popupToggle(imagePopup));
+imageClose.addEventListener('click', () => removePopup(imagePopup));
 imagePopup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {popupToggle(imagePopup)
+  if (event.target === event.currentTarget) {
+    removePopup(imagePopup);  
   };
 });
 
