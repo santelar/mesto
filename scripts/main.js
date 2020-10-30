@@ -40,8 +40,9 @@ const removePopup = (popupType) => {
 }
 
 // Ф-ция дизейбла попапа добавления карточек //
-const ToggleStateButton = (popupType) => {
+const disableButtonState = (popupType) => {
   popupType.querySelector('.popup__save').classList.add('popup__save_invalid');
+  popupType.querySelector('.popup__save').disabled = true;
 }
 
 // Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка //
@@ -113,7 +114,7 @@ cardOpenButton.addEventListener('click', () => {
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
   addPopup(cardPopup);
-  ToggleStateButton(cardPopup);
+  disableButtonState(cardPopup);
 });
 
 // Обработчик закрытия попапа без сохранения //
