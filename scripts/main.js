@@ -23,7 +23,7 @@ const imageName = document.querySelector('.popup__image-name');
 // Ф-ция закрытия попапа по Esc //
 const closePopupByEsc = (evt) => {
   if (evt.key === 'Escape') {
-  removePopup(evt.currentTarget.querySelector('.popup_opened'));
+    closePopup(evt.currentTarget.querySelector('.popup_opened'));
   }
 }
 
@@ -34,14 +34,14 @@ const addPopup = (popupType) => {
 }
 
 // Ф-ция закрытия попапа //
-const removePopup = (popupType) => {
+const closePopup = (popupType) => {
   popupType.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEsc);
 }
 
-// Ф-ция дизейбла попапа добавления карточек //
+// Ф-ция дизейбла кнопки Создать попапа добавления карточек //
 const disableButtonState = (popupType) => {
-  popupType.querySelector('.popup__save').classList.add('popup__save_invalid');
+  popupType.querySelector('.popup__save').classList.add(validationConfig.submitButtonClass);
   popupType.querySelector('.popup__save').disabled = true;
 }
 
@@ -89,7 +89,7 @@ function submitProfile (event) {
   event.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  removePopup(profilePopup);
+  closePopup(profilePopup);
 }
 
 // Функция сохранения НОВОЙ Карточки //
@@ -102,7 +102,7 @@ const submitCard = (event) => {
   elements.prepend(newCard);
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
-  removePopup(cardPopup);
+  closePopup(cardPopup);
 }
 
 // Обработчик открытия попапа //
@@ -119,27 +119,27 @@ cardOpenButton.addEventListener('click', () => {
 
 // Обработчик закрытия попапа без сохранения //
 profileClose.addEventListener('click', () => {
-  removePopup(profilePopup);
+  closePopup(profilePopup);
 });
 profilePopup.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
-    removePopup(profilePopup);
+    closePopup(profilePopup);
   };
 });
 
 cardClose.addEventListener('click', () => {
-  removePopup(cardPopup);
+  closePopup(cardPopup);
 });
 cardPopup.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
-    removePopup(cardPopup);
+    closePopup(cardPopup);
   };
 });
 
-imageClose.addEventListener('click', () => removePopup(imagePopup));
+imageClose.addEventListener('click', () => closePopup(imagePopup));
 imagePopup.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
-    removePopup(imagePopup);  
+    closePopup(imagePopup);  
   };
 });
 
