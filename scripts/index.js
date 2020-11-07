@@ -1,8 +1,6 @@
 const template = document.querySelector('.template');
 const elements = document.querySelector('.elements');
 
-const inputSelector = document.querySelector('.popup__input');
-
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
 const profileClose = document.querySelector('.popup__close_profile');
@@ -22,17 +20,32 @@ const imageClose = document.querySelector('.popup__close_image');
 const imagePlace = document.querySelector('.popup__image-place');
 const imageName = document.querySelector('.popup__image-name');
 
- //Добавление/удаление класса попапа popup_opened//
- const popupToggle = (popupType) => {
-  popupType.classList.toggle('popup_opened');
+// Ф-ция закрытия попапа по Esc //
+const closePopupByEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(evt.currentTarget.querySelector('.popup_opened'));
+  }
 }
 
- //Для закрытия попапа по ESC//
- const popupRemove = (popupType) => {
-  popupType.classList.remove('popup_opened');
- }
+// Ф-ция открытия попапа + возможность закрыть попап по Esc //
+const addPopup = (popupType) => {
+  popupType.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
+}
 
-//Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка//
+// Ф-ция закрытия попапа //
+const closePopup = (popupType) => {
+  popupType.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
+}
+
+// Ф-ция дизейбла кнопки Создать попапа добавления карточек //
+const disableButtonState = (popupType) => {
+  popupType.querySelector('.popup__save').classList.add(validationConfig.submitButtonClass);
+  popupType.querySelector('.popup__save').disabled = true;
+}
+
+// Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка //
 function getItems (data) {
   const card = template.content.cloneNode(true);
   const cardImage = card.querySelector('.card__image');
@@ -41,24 +54,24 @@ function getItems (data) {
   cardImage.alt = data.name;
 
   card.querySelector('.button__like').addEventListener('click', (event) => {
-  event.target.classList.toggle('button__like_activ');
+    event.target.classList.toggle('button__like_activ');
   });
 
   card.querySelector('.button__delete').addEventListener('click', (event) => {
-  event.target.closest('.card').remove();
+    event.target.closest('.card').remove();
   });
 
   cardImage.addEventListener('click', () => {
-  imagePlace.src = data.link;
-  imageName.textContent = data.name;
-  imagePlace.alt = data.name;
-  popupToggle(imagePopup);
+    imagePlace.src = data.link;
+    imageName.textContent = data.name;
+    imagePlace.alt = data.name;
+    addPopup(imagePopup);
   });
 
   return card;
 }
 
-//Ф-ция разбивки массива на элементы и отрисовка элементов массива//
+// Ф-ция разбивки массива на элементы и отрисовка элементов массива //
 const renderList = () => {
   const items = placesCards.map(element => getItems(element));
   elements.append(...items);
@@ -66,20 +79,20 @@ const renderList = () => {
 renderList ();
 
 // Функция переноса в попап данных профайла при открытии попапа Name //
-function formProfileHandler () {
+function fillProfilePopupInputs () {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 }
 
-// Функция сохранения Профайла//
+// Функция сохранения Профайла //
 function submitProfile (event) {
   event.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  popupToggle (profilePopup);
+  closePopup(profilePopup);
 }
 
-//Функция сохранения НОВОЙ Карточки//
+// Функция сохранения НОВОЙ Карточки //
 const submitCard = (event) => {
   event.preventDefault();
   const newCard = getItems({
@@ -89,46 +102,44 @@ const submitCard = (event) => {
   elements.prepend(newCard);
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
-  popupToggle(cardPopup);
+  closePopup(cardPopup);
 }
 
 // Обработчик открытия попапа //
 profileOpenButton.addEventListener('click', () => {
-  popupToggle(profilePopup);
-  formProfileHandler ();
+  addPopup(profilePopup);
+  fillProfilePopupInputs ();
 });
-cardOpenButton.addEventListener('click', () => popupToggle(cardPopup));
-
-//Закрытие попапа по ESC//
-document.addEventListener('keydown', (event) => {
-  if (event.keyCode === 27) {
-    popupRemove(profilePopup);
-    popupRemove(cardPopup);
-  }
+cardOpenButton.addEventListener('click', () => {
+  cardNameInput.value = '';
+  cardDescriptionInput.value = '';
+  addPopup(cardPopup);
+  disableButtonState(cardPopup);
 });
 
 // Обработчик закрытия попапа без сохранения //
 profileClose.addEventListener('click', () => {
-  popupToggle(profilePopup);
+  closePopup(profilePopup);
 });
 profilePopup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {popupToggle(profilePopup)
+  if (event.target === event.currentTarget) {
+    closePopup(profilePopup);
   };
 });
 
 cardClose.addEventListener('click', () => {
-  popupToggle(cardPopup);
-  cardNameInput.value = '';
-  cardDescriptionInput.value = '';
+  closePopup(cardPopup);
 });
 cardPopup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {popupToggle(cardPopup)
+  if (event.target === event.currentTarget) {
+    closePopup(cardPopup);
   };
 });
 
-imageClose.addEventListener('click', () => popupToggle(imagePopup));
+imageClose.addEventListener('click', () => closePopup(imagePopup));
 imagePopup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {popupToggle(imagePopup)
+  if (event.target === event.currentTarget) {
+    closePopup(imagePopup);  
   };
 });
 
