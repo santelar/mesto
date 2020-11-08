@@ -1,5 +1,5 @@
 //Массив картинок//
-const placesCards = [
+export const placesCards = [
     { name: 'Москва', link: './images/moscow.jpg'},
     { name: 'Байкал', link: './images/baykal.jpg'},
     { name: 'Владивосток', link: './images/vladivostok.jpg'},
