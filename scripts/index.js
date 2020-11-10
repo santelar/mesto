@@ -3,7 +3,6 @@ import { Card } from './Card.js';
 //import {FormValidator} from './FormValidator.js';
 
 export const template = document.querySelector('.template');
-const elements = document.querySelector('.elements');
 
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
@@ -26,7 +25,7 @@ const imageName = document.querySelector('.popup__image-name');
 
 const addItem = (name, link) => {
   const listItem = new Card(name, link);
-  listItem.renderCard(elements);
+  listItem.renderCard();
 }
 placesCards.forEach(addItem);
 
@@ -38,8 +37,6 @@ const submitCard = (event) => {
     link: cardDescriptionInput.value
   });
   const cardElement = newCard.renderCard();
-
-  elements.prepend(cardElement);
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
   closePopup(cardPopup);
@@ -125,5 +122,3 @@ imagePopup.addEventListener('click', (event) => {
 // Обработчик сохранения //
 profilePopup.addEventListener('submit', submitProfile);
 cardPopup.addEventListener('submit', submitCard);
-
-export {elements};
