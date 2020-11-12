@@ -1,8 +1,6 @@
 import { placesCards } from './imageMassive.js';
 import { Card } from './Card.js';
-//import {FormValidator} from './FormValidator.js';
-
-export const template = document.querySelector('.template');
+import { FormValidator } from './FormValidator.js';
 
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
@@ -18,10 +16,8 @@ const cardClose = document.querySelector('.popup__close_card');
 const cardNameInput = document.querySelector('.popup__input_name-card');
 const cardDescriptionInput = document.querySelector('.popup__input_url-card');
 
-export const imagePopup = document.querySelector('.popup__image');
+const imagePopup = document.querySelector('.popup__image');
 const imageClose = document.querySelector('.popup__close_image');
-const imagePlace = document.querySelector('.popup__image-place');
-const imageName = document.querySelector('.popup__image-name');
 
 const addItem = (name, link) => {
   const listItem = new Card(name, link);
@@ -41,6 +37,23 @@ const submitCard = (event) => {
   cardDescriptionInput.value = '';
   closePopup(cardPopup);
 }
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  submitButtonClass: 'popup__save_invalid',
+  inputErrorClass: 'popup__input_invalid'
+}
+
+const formUser = document.querySelector('.popup__form_user');
+const newformUser = new FormValidator(validationConfig, formUser);
+newformUser.enableValidation();
+
+const formCard = document.querySelector('.popup__form_place');
+const newformCard = new FormValidator(validationConfig, formCard);
+newformCard.enableValidation();
+
 
 // Ф-ция закрытия попапа по Esc //
 const closePopupByEsc = (evt) => {

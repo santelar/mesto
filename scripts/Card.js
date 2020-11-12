@@ -1,10 +1,10 @@
-import { template, addPopup, imagePopup } from './index.js';
+import { addPopup } from './index.js';
 
 export class Card {
   constructor(data, name, link) {
     this._name = data.name;
     this._link = data.link;
-    this._template = template;
+    this._template = document.querySelector('.template');
   }
 
   _openImage() {
@@ -12,7 +12,7 @@ export class Card {
       document.querySelector('.popup__image-place').src = this._link;
       document.querySelector('.popup__image-name').alt = this._name;
       document.querySelector('.popup__image-place').innerText = this._name;
-      addPopup(imagePopup);
+      addPopup(document.querySelector('.popup__image'));
     });
   }
 
@@ -29,7 +29,7 @@ export class Card {
   }
 
   renderCard() {
-     this._element = template.content.cloneNode(true);
+     this._element = this._template.content.cloneNode(true);
 
     this._element.querySelector('.card__image').src = this._link;
     this._element.querySelector('.card__image').alt = this._name;
