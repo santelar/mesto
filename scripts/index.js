@@ -96,14 +96,16 @@ function submitProfile (event) {
 
 // Обработчик открытия попапа //
 profileOpenButton.addEventListener('click', () => {
-  addPopup(profilePopup);
   fillProfilePopupInputs ();
+  newformUser.clearInputErrors(profilePopup);
+  addPopup(profilePopup);
 });
 cardOpenButton.addEventListener('click', () => {
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
+  newformCard.clearInputErrors(cardPopup);
   addPopup(cardPopup);
-  disableButtonState(cardPopup);
+  //disableButtonState(cardPopup);
 });
 
 // Обработчик закрытия попапа без сохранения //
