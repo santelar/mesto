@@ -1,0 +1,10 @@
+.button__like {
+  margin: 6px 3px 0 18px;
+  width: 27px;
+  height: 19px;
+  background: url(../../../images/card__like_disabled.svg) no-repeat;
+}
+
+.button__like:hover {
+  cursor: pointer;
+}
