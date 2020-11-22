@@ -1,8 +1,7 @@
 //Массив картинок//
 export const initialItems = [
   { name: 'Москва', link: './src/images/moscow.jpg'},
-  { name: 'БайкалБайкал', link: './src/images/moscow.jpg'},
-  { name: 'Байкал', link: './src/images/baykal.jpg'},
+  { name: 'Байкал', link: './src/images/baikal.jpg'},
   { name: 'Владивосток', link: './src/images/vladivostok.jpg'},
   { name: 'Санкт-Петербург', link: './src/images/piter.jpg'},
   { name: 'Роща улица Желаний', link: './src/images/roscha_ulitsa_zhelaniy.jpg'},
