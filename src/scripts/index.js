@@ -4,7 +4,6 @@ import { Section } from './Section.js';
 import { FormValidator } from './FormValidator.js';
 
 const elements = document.querySelector('.elements');
-const template = document.querySelector('.template');
 
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
@@ -35,7 +34,7 @@ const openImagePopup = (name, link) => {
 const section = new Section({
   data: initialItems,
   renderer: (item) => {
-    const card = new Card(item, template);
+    const card = new Card(item, document.querySelector('.template'));
     const cardElement = card.generateCard();
     section.addItem(cardElement);
     },
@@ -45,29 +44,16 @@ const section = new Section({
 
 section.renderSection ();
 
-
-
-// Функция сохранения НОВОЙ Карточки //
 const submitCard = (event) => {
   event.preventDefault();
-  const addNewItem = (data) => {
-    const newCard = new Card({data: newItemList}, template);
+  const name = cardNameInput.value
+  const link = cardDescriptionInput.value
+    const newCard = new Card({name, link}, document.querySelector('.template'));
+    console.log(newCard);
     const list = newCard.generateCard();
     elements.prepend(list);
-  }
-  const newItemList = [
-    { name: cardNameInput.value, link: cardDescriptionInput.value }
-  ];
-  console.log(newItemList);
-  addNewItem(newItemList);
-  //cardNameInput.value = '';
-  //cardDescriptionInput.value = '';
   closePopup(cardPopup);
 }
-
-
-
-
 
 const validationConfig = {
   formSelector: '.popup__form',
