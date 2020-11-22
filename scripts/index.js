@@ -1,5 +1,9 @@
-const template = document.querySelector('.template');
+import { placesCards } from './imageMassive.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const elements = document.querySelector('.elements');
+const template = document.querySelector('.template');
 
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
@@ -17,8 +21,55 @@ const cardDescriptionInput = document.querySelector('.popup__input_url-card');
 
 const imagePopup = document.querySelector('.popup__image');
 const imageClose = document.querySelector('.popup__close_image');
-const imagePlace = document.querySelector('.popup__image-place');
 const imageName = document.querySelector('.popup__image-name');
+const imagePlace = document.querySelector('.popup__image-place');
+
+
+const openImagePopup = (name, link) => {
+  imagePlace.src = link;
+  imagePlace.alt = name;
+  imageName.innerText = name;
+  addPopup(imagePopup);
+};
+
+const addItem = (name, link) => {
+  const listItem = new Card(name, link, template, openImagePopup);
+  const list = listItem.renderCard();
+  elements.append(list);
+}
+
+placesCards.forEach(item => addItem(item.name, item.link));
+
+// Функция сохранения НОВОЙ Карточки //
+const submitCard = (event) => {
+  event.preventDefault();
+  const addNewItem = (name, link) => {
+    const listItem = new Card(name, link, template, openImagePopup);
+    const list = listItem.renderCard();
+    elements.prepend(list);
+  }
+  addNewItem(cardNameInput.value, cardDescriptionInput.value);
+  cardNameInput.value = '';
+  cardDescriptionInput.value = '';
+  closePopup(cardPopup);
+}
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  submitButtonClass: 'popup__save_invalid',
+  inputErrorClass: 'popup__input_invalid'
+}
+
+const formUser = document.querySelector('.popup__form_user');
+const newformUser = new FormValidator(validationConfig, formUser);
+newformUser.enableValidation();
+
+const formCard = document.querySelector('.popup__form_place');
+const newformCard = new FormValidator(validationConfig, formCard);
+newformCard.enableValidation();
+
 
 // Ф-ция закрытия попапа по Esc //
 const closePopupByEsc = (evt) => {
@@ -45,76 +96,32 @@ const disableButtonState = (popupType) => {
   popupType.querySelector('.popup__save').disabled = true;
 }
 
-// Ф-ция создания блока картинки из темплейта, ф-ция удаления, ф-ция лайка //
-function getItems (data) {
-  const card = template.content.cloneNode(true);
-  const cardImage = card.querySelector('.card__image');
-  card.querySelector('.card__title').innerText = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-
-  card.querySelector('.button__like').addEventListener('click', (event) => {
-    event.target.classList.toggle('button__like_activ');
-  });
-
-  card.querySelector('.button__delete').addEventListener('click', (event) => {
-    event.target.closest('.card').remove();
-  });
-
-  cardImage.addEventListener('click', () => {
-    imagePlace.src = data.link;
-    imageName.textContent = data.name;
-    imagePlace.alt = data.name;
-    addPopup(imagePopup);
-  });
-
-  return card;
-}
-
-// Ф-ция разбивки массива на элементы и отрисовка элементов массива //
-const renderList = () => {
-  const items = placesCards.map(element => getItems(element));
-  elements.append(...items);
-};
-renderList ();
-
 // Функция переноса в попап данных профайла при открытии попапа Name //
-function fillProfilePopupInputs () {
+function fillProfilePopupInputs() {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 }
 
 // Функция сохранения Профайла //
-function submitProfile (event) {
+function submitProfile(event) {
   event.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closePopup(profilePopup);
 }
 
-// Функция сохранения НОВОЙ Карточки //
-const submitCard = (event) => {
-  event.preventDefault();
-  const newCard = getItems({
-    name: cardNameInput.value,
-    link: cardDescriptionInput.value
-  });
-  elements.prepend(newCard);
-  cardNameInput.value = '';
-  cardDescriptionInput.value = '';
-  closePopup(cardPopup);
-}
-
 // Обработчик открытия попапа //
 profileOpenButton.addEventListener('click', () => {
+  fillProfilePopupInputs();
+  newformUser.clearInputErrors(profilePopup);
   addPopup(profilePopup);
-  fillProfilePopupInputs ();
 });
 cardOpenButton.addEventListener('click', () => {
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
+  newformCard.clearInputErrors(cardPopup);
   addPopup(cardPopup);
-  disableButtonState(cardPopup);
+  //disableButtonState(cardPopup);
 });
 
 // Обработчик закрытия попапа без сохранения //
@@ -139,7 +146,7 @@ cardPopup.addEventListener('click', (event) => {
 imageClose.addEventListener('click', () => closePopup(imagePopup));
 imagePopup.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
-    closePopup(imagePopup);  
+    closePopup(imagePopup);
   };
 });
 
