@@ -45,6 +45,8 @@ const section = new Section({
 
 section.renderSection ();
 
+
+
 // Функция сохранения НОВОЙ Карточки //
 const submitCard = (event) => {
   event.preventDefault();
