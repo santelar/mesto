@@ -1,5 +1,6 @@
-import { placesCards } from './imageMassive.js';
+import { initialItems } from './initialItems.js';
 import { Card } from './Card.js';
+import { Section } from './Section.js';
 import { FormValidator } from './FormValidator.js';
 
 const elements = document.querySelector('.elements');
@@ -24,7 +25,6 @@ const imageClose = document.querySelector('.popup__close_image');
 const imageName = document.querySelector('.popup__image-name');
 const imagePlace = document.querySelector('.popup__image-place');
 
-
 const openImagePopup = (name, link) => {
   imagePlace.src = link;
   imagePlace.alt = name;
@@ -32,27 +32,40 @@ const openImagePopup = (name, link) => {
   addPopup(imagePopup);
 };
 
-const addItem = (name, link) => {
-  const listItem = new Card(name, link, template, openImagePopup);
-  const list = listItem.renderCard();
-  elements.append(list);
-}
+const section = new Section({
+  data: initialItems,
+  renderer: (item) => {
+    const card = new Card(item, template);
+    const cardElement = card.generateCard();
+    section.addItem(cardElement);
+    },
+  },
+  elements
+);
 
-placesCards.forEach(item => addItem(item.name, item.link));
+section.renderSection ();
 
 // Функция сохранения НОВОЙ Карточки //
 const submitCard = (event) => {
   event.preventDefault();
-  const addNewItem = (name, link) => {
-    const listItem = new Card(name, link, template, openImagePopup);
-    const list = listItem.renderCard();
+  const addNewItem = (data) => {
+    const newCard = new Card({data: newItemList}, template);
+    const list = newCard.generateCard();
     elements.prepend(list);
   }
-  addNewItem(cardNameInput.value, cardDescriptionInput.value);
-  cardNameInput.value = '';
-  cardDescriptionInput.value = '';
+  const newItemList = [
+    { name: cardNameInput.value, link: cardDescriptionInput.value }
+  ];
+  console.log(newItemList);
+  addNewItem(newItemList);
+  //cardNameInput.value = '';
+  //cardDescriptionInput.value = '';
   closePopup(cardPopup);
 }
+
+
+
+
 
 const validationConfig = {
   formSelector: '.popup__form',
