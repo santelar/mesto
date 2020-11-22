@@ -1,5 +1,5 @@
 **Проект: Меsto - Russia**
-https://santelar.github.io/mesto/
+https://santelar.github.io/mesto/tree/develop/src
 
 Сайт о путешествиях по России и не только. Делимся фотографиями и положительными эмоциями от замечательных путешествий по миру.
 
