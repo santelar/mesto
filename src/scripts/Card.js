@@ -1,18 +1,24 @@
 export class Card {
-  constructor(data, template) {
-    this._name = data.name;
-    this._link = data.link;
-    //this._handleCardClick = handleCardClick;
-    this._template = template;
+  constructor(name, link, templateSelector, handleCardClick) {
+    this._name = name;
+    this._link = link;
+    this._handleCardClick = handleCardClick;
+    this._template = document.querySelector(templateSelector);
   }
 
-  _setEventListeners () {
+    _setEventListeners () {
       this._element.querySelector('.button__like').addEventListener('click', (event) => {
       event.target.classList.toggle('button__like_activ');
     });
      this._element.querySelector('.button__delete').addEventListener('click', (event) => {
       event.target.closest('.card').remove();
     });
+      this._element.querySelector('.card__image').addEventListener('click', () => {
+        console.log('click on image');
+        this._handleCardClick(this._name, this._link);
+
+    });
+
   }
 
   generateCard() {
@@ -30,3 +36,8 @@ export class Card {
   }
 
 }
+
+/*
+   this._image.addEventListener('click', () => {
+      this._handleCardClick(this._titleCard, 
+        this._linkCard);*/

@@ -2,10 +2,11 @@ import { initialItems } from './initialItems.js';
 import { Section } from './Section.js';
 import { Card } from './Card.js';
 import { Popup } from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
+import { UserInfo } from './UserInfo.js';
 import { FormValidator } from './FormValidator.js';
 
 const elements = document.querySelector('.elements');
-const template = document.querySelector('.template');
 
 const profilePopup = document.querySelector('.popup__profile');
 const profileOpenButton = document.querySelector('.profile__edit');
@@ -34,8 +35,9 @@ const validationConfig = {
   inputErrorClass: 'popup__input_invalid'
 }
 
-const popupProfile = new Popup(profilePopup);
-const popupCard = new Popup(cardPopup);
+const popupProfile = new Popup('.popup__profile');
+const popupCard = new Popup('.popup__card');
+const popupImage = new Popup('.popup__image');
 
 /* // Открытие картинки
 const openImagePopup = (name, link) => {
@@ -49,25 +51,29 @@ const openImagePopup = (name, link) => {
 const section = new Section({
   data: initialItems,
   renderer: (item) => {
-    const card = new Card(item, template);
+    const card = new Card(item.name, item.link, '.template');
     const cardElement = card.generateCard();
     section.addItem(cardElement);
-    },
   },
+},
   elements
 );
 
-section.renderSection ();
+section.renderSection();
 
 const submitCard = (event) => {
   event.preventDefault();
   const name = cardNameInput.value
   const link = cardDescriptionInput.value
-    const newCard = new Card({name, link}, template);
-    console.log(newCard);
-    const list = newCard.generateCard();
-    elements.prepend(list);
-  closePopup(cardPopup);
+  const newCard = new Card(name, link, '.template', () => {
+    const imageBigSize = new PopupWithImage(name, link);
+    console.log('new Card');
+    imageBigSize.open();
+    imageBigSize.setEventListeners();
+  });
+  const list = newCard.generateCard();
+  elements.prepend(list);
+  newCard.close();
 }
 
 //Запуск валидации
@@ -86,11 +92,14 @@ const disableButtonState = (popupType) => {
 }
 
 
+
+
+
 // Функция переноса в попап данных профайла при открытии попапа Name //
-function fillProfilePopupInputs() {
-  profileNameInput.value = profileName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-}
+//function fillProfilePopupInputs() {
+//  profileNameInput.value = profileName.textContent;
+//  profileDescriptionInput.value = profileDescription.textContent;
+//}
 
 // Функция сохранения Профайла //
 //function submitProfile(event) {
@@ -101,11 +110,15 @@ function fillProfilePopupInputs() {
 //}
 
 // Обработчик открытия попапа //
+const userInfo = new UserInfo({ profileName, profileDescription });
 profileOpenButton.addEventListener('click', () => {
-  fillProfilePopupInputs();
+  //fillProfilePopupInputs();
   newformUser.clearInputErrors(profilePopup);
   popupProfile.open();
   popupProfile.setEventListeners();
+  const mainInfo = userInfo.getUserInfo();
+  profileNameInput.value = mainInfo.name;
+  profileDescriptionInput.value = mainInfo.description;
 });
 cardOpenButton.addEventListener('click', () => {
   cardNameInput.value = '';
@@ -117,18 +130,12 @@ cardOpenButton.addEventListener('click', () => {
 });
 
 // Обработчик закрытия попапа без сохранения //
-//profileClose.addEventListener('click', () => {
-//  popupProfile.close();
-//});
 //profilePopup.addEventListener('click', (event) => {
 //if (event.target === event.currentTarget) {
 //    closePopup(profilePopup);
 //  };
 //});
 
-//cardClose.addEventListener('click', () => {
-//  popupCard.close();
-//});
 //cardPopup.addEventListener('click', (event) => {
 //  if (event.target === event.currentTarget) {
 //    closePopup(cardPopup);
@@ -144,4 +151,4 @@ cardOpenButton.addEventListener('click', () => {
 
 // Обработчик сохранения //
 //profilePopup.addEventListener('submit', submitProfile);
-//cardPopup.addEventListener('submit', submitCard);
+cardPopup.addEventListener('submit', submitCard);
