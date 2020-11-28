@@ -1,5 +1,5 @@
 export class Card {
-  constructor(name, link, templateSelector, handleCardClick) {
+  constructor(name, link, handleCardClick, templateSelector) {
     this._name = name;
     this._link = link;
     this._handleCardClick = handleCardClick;
@@ -15,8 +15,7 @@ export class Card {
     });
       this._element.querySelector('.card__image').addEventListener('click', () => {
         console.log('click on image');
-        this._handleCardClick(this._name, this._link);
-
+        this._handleCardClick();
     });
 
   }
@@ -36,8 +35,3 @@ export class Card {
   }
 
 }
-
-/*
-   this._image.addEventListener('click', () => {
-      this._handleCardClick(this._titleCard, 
-        this._linkCard);*/
