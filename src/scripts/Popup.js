@@ -16,9 +16,8 @@ export class Popup {
   }
 
   open() {
+    console.log('open form');
     this._popupSelector.classList.add('popup_opened');
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
-    document.addEventListener('click', this._handlerOverlayClose.bind(this));
   }
 
   close() {
@@ -29,6 +28,8 @@ export class Popup {
   setEventListeners() {
     this._popupSelector.querySelector('.popup__close')
       .addEventListener('click', this.close.bind(this));
+    document.addEventListener('keydown', this._handleEscClose.bind(this));
+    document.addEventListener('click', this._handlerOverlayClose.bind(this));
   }
 
 }

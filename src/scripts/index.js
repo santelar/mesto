@@ -3,6 +3,7 @@ import { Section } from './Section.js';
 import { Card } from './Card.js';
 import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage.js';
+import { PopupWithForm } from './PopupWithForm.js';
 import { UserInfo } from './UserInfo.js';
 import { FormValidator } from './FormValidator.js';
 
@@ -41,41 +42,41 @@ const popupImage = new Popup('.popup__image');
 
 
 
-
 const section = new Section({
   data: initialItems,
   renderer: (item) => {
-    const card = new Card(item.name, item.link, () => {
+    const card = new Card(item.name, item.link, '.template', () => {
       const imageBigSize = new PopupWithImage('.popup__image', card);
       imageBigSize.open();
       imageBigSize.setEventListeners();
-      }, '.template');
+      });
     const cardElement = card.generateCard();
     section.addItem(cardElement);
   },
 },
   elements
 );
-
 section.renderSection();
 
-const submitCard = (event) => {
-  event.preventDefault();
-  const name = cardNameInput.value
-  const link = cardDescriptionInput.value
-  const newCard = new Card(name, link, () => {
-    const newPopupWithImage = new PopupWithImage('.popup__image',newCard );
-    newPopupWithImage.open();
-    newPopupWithImage.setEventListeners();
-    }, '.template');
-  const list = newCard.generateCard();
-  elements.prepend(list);
-  popupCard.close();
-}
 
 
+const newPopupCardForm = new PopupWithForm('.popup__card',
+  {handleFormSubmit: (name, link) => {
+    const newCard = new Card(name, link, '.template', () => {
+      popupWithImage.open(card);
+      popupWithImage.setEventListeners();
+    });
+    const newCardElement = newCard.generateCard();
+    elements.prepend(newCardElement);
+    newPopupCardForm.close();
+    }
+  });
 
+  const popupWithImage = new PopupWithImage('.popup__image');
 
+  cardOpenButton.addEventListener('click', () => {
+  newPopupCardForm.open();
+  });
 
 //Запуск валидации
 const formUser = document.querySelector('.popup__form_user');
@@ -99,9 +100,11 @@ profileOpenButton.addEventListener('click', () => {
   popupProfile.open();
   popupProfile.setEventListeners();
   const mainInfo = userInfo.getUserInfo();
-  //profileNameInput.value = mainInfo.name;
-  //profileDescriptionInput.value = mainInfo.description;
+  profileNameInput.value = mainInfo.name;
+  profileDescriptionInput.value = mainInfo.description;
 });
+
+/*
 cardOpenButton.addEventListener('click', () => {
   cardNameInput.value = '';
   cardDescriptionInput.value = '';
@@ -109,10 +112,4 @@ cardOpenButton.addEventListener('click', () => {
   popupCard.open();
   popupCard.setEventListeners();
   disableButtonState(cardPopup);
-});
-
-// Обработчик сохранения //
-profilePopup.addEventListener('submit', () => {
-  userInfo.setUserInfo()
-});
-cardPopup.addEventListener('submit', submitCard);
+});*/
