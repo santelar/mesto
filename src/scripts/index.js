@@ -36,48 +36,6 @@ const validationConfig = {
   inputErrorClass: 'popup__input_invalid'
 }
 
-const popupProfile = new Popup('.popup__profile');
-const popupCard = new Popup('.popup__card');
-const popupImage = new Popup('.popup__image');
-
-
-
-const section = new Section({
-  data: initialItems,
-  renderer: (item) => {
-    const card = new Card(item.name, item.link, '.template', () => {
-      const imageBigSize = new PopupWithImage('.popup__image', card);
-      imageBigSize.open();
-      imageBigSize.setEventListeners();
-      });
-    const cardElement = card.generateCard();
-    section.addItem(cardElement);
-  },
-},
-  elements
-);
-section.renderSection();
-
-
-
-const newPopupCardForm = new PopupWithForm('.popup__card',
-  {handleFormSubmit: (name, link) => {
-    const newCard = new Card(name, link, '.template', () => {
-      popupWithImage.open(card);
-      popupWithImage.setEventListeners();
-    });
-    const newCardElement = newCard.generateCard();
-    elements.prepend(newCardElement);
-    newPopupCardForm.close();
-    }
-  });
-
-  const popupWithImage = new PopupWithImage('.popup__image');
-
-  cardOpenButton.addEventListener('click', () => {
-  newPopupCardForm.open();
-  });
-
 //Запуск валидации
 const formUser = document.querySelector('.popup__form_user');
 const newformUser = new FormValidator(validationConfig, formUser);
@@ -93,23 +51,56 @@ const disableButtonState = (popupType) => {
   popupType.querySelector('.popup__save').disabled = true;
 }
 
-// Обработчик открытия попапа //
-const userInfo = new UserInfo({ profileName, profileDescription });
-profileOpenButton.addEventListener('click', () => {
-  newformUser.clearInputErrors(profilePopup);
-  popupProfile.open();
-  popupProfile.setEventListeners();
-  const mainInfo = userInfo.getUserInfo();
-  profileNameInput.value = mainInfo.name;
-  profileDescriptionInput.value = mainInfo.description;
+const popupWithImage = new PopupWithImage('.popup__image');
+
+const section = new Section({
+  data: initialItems,
+  renderer: (item) => {
+    const card = new Card(item.name, item.link, '.template', () => {
+      popupWithImage.open(card);
+      popupWithImage.setEventListeners();
+      });
+    const cardElement = card.generateCard();
+    section.addItem(cardElement);
+  },
+},
+  elements
+);
+section.renderSection();
+
+const newPopupCardForm = new PopupWithForm('.popup__card',
+  {handleFormSubmit: (name, link) => {
+    const newCard = new Card(name, link, '.template', () => {
+      popupWithImage.open(card);
+      popupWithImage.setEventListeners();
+    });
+    const newCardElement = newCard.generateCard();
+    elements.prepend(newCardElement);
+    newPopupCardForm.close();
+    }
+  });
+
+cardOpenButton.addEventListener('click', () => {
+  newPopupCardForm.open();
+  newPopupCardForm.setEventListeners('.popup__card');
 });
 
-/*
-cardOpenButton.addEventListener('click', () => {
-  cardNameInput.value = '';
-  cardDescriptionInput.value = '';
-  newformCard.clearInputErrors(cardPopup);
-  popupCard.open();
-  popupCard.setEventListeners();
-  disableButtonState(cardPopup);
-});*/
+
+///
+const newPopupProfileForm = new PopupWithForm('.popup__profile',
+  {handleFormSubmit: (name, link) => {
+    const userInfo = new UserInfo({ profileName, profileDescription });
+
+    const mainInfo = userInfo.getUserInfo();
+    //profileNameInput.value = mainInfo.name;
+    //profileDescriptionInput.value = mainInfo.description;
+
+
+    newPopupProfileForm.close();
+  }
+});
+profileOpenButton.addEventListener('click', () => {
+  //newPopupProfileForm.clearInputErrors(profilePopup);
+  newPopupProfileForm.open();
+  newPopupProfileForm.setEventListeners();
+});

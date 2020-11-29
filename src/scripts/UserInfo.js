@@ -5,10 +5,13 @@ export class UserInfo {
   }
 
   getUserInfo() {
+    console.log('this._userName  ' + this._userName);
+    console.log('this._userDescription  ' + this._userDescription);
     const profileInfo = {
       name: this._userName.textContent,
       description: this._userDescription.textContent
     }
+    console.log('profileInfo  ' + profileInfo);
     return profileInfo;
   }
 

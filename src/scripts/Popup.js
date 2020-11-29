@@ -17,6 +17,7 @@ export class Popup {
 
   open() {
     console.log('open form');
+    console.log(this._popupSelector);
     this._popupSelector.classList.add('popup_opened');
   }
 
