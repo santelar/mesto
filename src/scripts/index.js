@@ -51,12 +51,11 @@ const disableButtonState = (popupType) => {
   popupType.querySelector('.popup__save').disabled = true;
 }
 
-const popupWithImage = new PopupWithImage('.popup__image');
-
 const section = new Section({
   data: initialItems,
   renderer: (item) => {
     const card = new Card(item.name, item.link, '.template', () => {
+      const popupWithImage = new PopupWithImage('.popup__image');
       popupWithImage.open(card);
       popupWithImage.setEventListeners();
       });
@@ -78,27 +77,40 @@ const newPopupCardForm = new PopupWithForm('.popup__card',
     elements.prepend(newCardElement);
     newPopupCardForm.close();
     }
-  });
+});
 
 cardOpenButton.addEventListener('click', () => {
   newPopupCardForm.open();
-  newPopupCardForm.setEventListeners('.popup__card');
+  newPopupCardForm.setEventListeners();
+  
 });
 
 
+
+
+/*
+const userData = new UserInfo({
+  profileName: profileName,
+  profileDescription: profileDescription,
+});
 ///
 const newPopupProfileForm = new PopupWithForm('.popup__profile',
   {handleFormSubmit: (name, link) => {
-    const userInfo = new UserInfo({ profileName, profileDescription });
+    const newUserData = userData.new UserInfo(name, link);
+  clearFormValues: () => {
+    const defaultUserData = userData.getUserInfo();
 
-    const mainInfo = userInfo.getUserInfo();
-    //profileNameInput.value = mainInfo.name;
-    //profileDescriptionInput.value = mainInfo.description;
+  
 
 
     newPopupProfileForm.close();
   }
 });
+
+*/
+
+
+
 profileOpenButton.addEventListener('click', () => {
   //newPopupProfileForm.clearInputErrors(profilePopup);
   newPopupProfileForm.open();

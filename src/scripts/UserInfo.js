@@ -5,19 +5,15 @@ export class UserInfo {
   }
 
   getUserInfo() {
-    console.log('this._userName  ' + this._userName);
-    console.log('this._userDescription  ' + this._userDescription);
-    const profileInfo = {
-      name: this._userName.textContent,
-      description: this._userDescription.textContent
-    }
-    console.log('profileInfo  ' + profileInfo);
+    const profileInfo = {};
+    this._profileInfo.name = this._userName.textContent,
+    this._profileInfo.description = this._userDescription.textContent
     return profileInfo;
   }
 
   setUserInfo({ name, description }) {
-    this._userName.textContent = name;
-    this._userDescription.textContent = description;
+    this._userName.textContent = this._profileInfo.name;
+    this._userDescription.textContent = this._profileInfo.description;
   }
 
 }
