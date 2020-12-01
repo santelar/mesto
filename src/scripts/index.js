@@ -16,6 +16,8 @@ const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const profileNameInput = document.querySelector('.popup__input_name-profile');
 const profileDescriptionInput = document.querySelector('.popup__input_description-profile');
+const popupSave = document.querySelector('.popup__save');
+const popupSaveDisable = document.querySelector('.popup__save_invalid');
 
 const cardPopup = document.querySelector('.popup__card');
 const cardOpenButton = document.querySelector('.button_add_card');
@@ -36,7 +38,7 @@ const validationConfig = {
   inputErrorClass: 'popup__input_invalid'
 }
 
-//Запуск валидации
+// ///// Запуск валидации
 const formUser = document.querySelector('.popup__form_user');
 const newformUser = new FormValidator(validationConfig, formUser);
 newformUser.enableValidation();
@@ -45,16 +47,11 @@ const formCard = document.querySelector('.popup__form_place');
 const newformCard = new FormValidator(validationConfig, formCard);
 newformCard.enableValidation();
 
-// Ф-ция дизейбла кнопки Создать попапа добавления карточек //
-const disableButtonState = (popupType) => {
-  popupType.querySelector('.popup__save').classList.add(validationConfig.submitButtonClass);
-  popupType.querySelector('.popup__save').disabled = true;
-}
-
+// ///// Секция - отрисовка массива карточек
 const section = new Section({
   data: initialItems,
   renderer: (item) => {
-    const card = new Card(item.name, item.link, '.template', () => {
+    const card = new Card(item, '.template', () => {
       const popupWithImage = new PopupWithImage('.popup__image');
       popupWithImage.open(card);
       popupWithImage.setEventListeners();
@@ -67,16 +64,19 @@ const section = new Section({
 );
 section.renderSection();
 
+// ///// Создание новой карточки
 const newPopupCardForm = new PopupWithForm('.popup__card',
-  {handleFormSubmit: (name, link) => {
-    const newCard = new Card(name, link, '.template', () => {
-      popupWithImage.open(card);
+  {handleFormSubmit: (data) => {
+    const newCard = new Card(data, '.template', () => {
+      popupWithImage.open(newCard);
       popupWithImage.setEventListeners();
     });
     const newCardElement = newCard.generateCard();
     elements.prepend(newCardElement);
-    newPopupCardForm.close();
-    }
+    //newPopupCardForm.close();
+  },
+  clearFormValues: () => {
+  }
 });
 
 cardOpenButton.addEventListener('click', () => {
@@ -86,33 +86,27 @@ cardOpenButton.addEventListener('click', () => {
 });
 
 
-
-
-/*
+// ///// Форма Профайла
 const userData = new UserInfo({
   profileName: profileName,
-  profileDescription: profileDescription,
+  profileDescription: profileDescription
 });
-///
+
 const newPopupProfileForm = new PopupWithForm('.popup__profile',
-  {handleFormSubmit: (name, link) => {
-    const newUserData = userData.new UserInfo(name, link);
+  {handleFormSubmit: (data) => {
+    const newUserData = userData.setUserInfo(data);
+  },
   clearFormValues: () => {
-    const defaultUserData = userData.getUserInfo();
+    const openUserData = userData.getUserInfo();
 
-  
-
-
-    newPopupProfileForm.close();
+    profileNameInput.value = openUserData.name;
+    profileDescriptionInput.value = openUserData.description;
+    popupSave.classList.remove(popupSaveDisable);
+    popupSave.disabled = false;
   }
 });
-
-*/
-
-
+newPopupProfileForm.setEventListeners();
 
 profileOpenButton.addEventListener('click', () => {
-  //newPopupProfileForm.clearInputErrors(profilePopup);
   newPopupProfileForm.open();
-  newPopupProfileForm.setEventListeners();
 });

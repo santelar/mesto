@@ -1,32 +1,32 @@
 import { Popup } from './Popup.js';
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, {handleFormSubmit}) {
+  constructor(popupSelector, {handleFormSubmit, clearFormValues}) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector('.popup__form');
-    //this._clearFormValues = clearFormValues;
+    this._inputList = this._popup.querySelectorAll('.popup__input');
+    this._clearFormValues = clearFormValues;
     
   }
-  /*
+
   _hideErrors() {
     this._inputErrors = Array.from(this._popup.querySelectorAll('.error'));
     this._inputErrors.forEach((item) => {
       item.textContent = '';
     });
-
     this._inputsWithErrors = Array.from(this._inputList);
     this._inputsWithErrors.forEach((errorInput) => {
-      errorInput.classList.remove('popup__input-text_type_error');
-    })
+      errorInput.classList.remove('popup__input_invalid');
+    });
   }
 
   open() {
     super.open();
-    this._clearFormValues();
     this._hideErrors();
+    this._clearFormValues();
   }
-*/
+
   close() {
     super.close();
     this._form.reset();
@@ -35,22 +35,10 @@ export class PopupWithForm extends Popup {
 
   _getInputValues() {
     this._formValues = {};
-    this._form = this._popup.querySelector('.popup__form');
-    console.log('this._popupSelector   ',  this._popupSelector);
-    console.log('this._popup   ',  this._popup);
-    console.log('this._form   ', this._form);
-
-
-    this._inputList = this._popup.querySelectorAll('.popup__input');
-        this._inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
-     
-      console.log('input.value   ',  input.value);
-  
     });
-    console.log('this._inputList   ',  this._inputList);
-    console.log('this._formValues   ',  this._formValues);
-    return this._formValues;
+    return this._formValues
   }  
 
   setEventListeners() {
@@ -63,5 +51,4 @@ export class PopupWithForm extends Popup {
       this.close();
     });
   }
-
 }
