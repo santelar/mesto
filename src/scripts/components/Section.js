@@ -1,12 +1,16 @@
 export class Section {
-  constructor({data, renderer}, containerSelector) {
-    this._initialItems = data;
+  constructor({items, renderer}, container) {
+    this._initialItems = items;
     this._renderer = renderer;
-    this._container = containerSelector;
+    this._container = container;
   }
 
   addItem (element) {
     this._container.append(element);
+  }
+
+  addNewItem (element) {
+    this._container.prepend(element);
   }
 
   renderSection () {

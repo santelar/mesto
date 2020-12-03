@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./pages/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto - Russia</title>
+</head>
+
+<body class="root">
+
+  <header class="header">
+    <img src="./images/header__logo.svg" alt="Лого" class="header__logo">
+  </header>
+
+  <main class="content">
+
+    <section class="profile">
+      <img src="./images/Avatar.jpg" alt="Аватар" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button type="button" class="button"><img src="./images/profile__edit.svg" alt="Изм."
+            class="profile__edit"></button>
+        <p class="profile__description">Исследователь океана</p>
+      </div>
+      <button type="button" class="button button_add_card"><img src="./images/add-button__plus.svg" alt="Добавить"
+          class="profile__add-button"></button>
+    </section>
+
+    <section class="elements"></section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__title">© 2020 Mesto Russia</p>
+  </footer>
+
+  <div class="popup popup__profile">
+    <div class="popup__container">
+      <button type="button" class="button"><img src="./images/add-button__plus.svg" alt="Закрыть"
+          class="popup__close popup__close_profile"></button>
+      <h2 class="popup__title popup__title_name">Редактировать профиль</h2>
+      <form class="popup__form popup__form_user" id="form-user" name="user" method="POST">
+        <input type="text" required autocomplete="off" minlength="2" maxlength="40"
+          class="popup__input popup__input_name popup__input_name-profile" id="user-name" name="name">
+        <span id="user-name-error" class="error"></span>
+        <input type="text" required autocomplete="off" minlength="2" maxlength="200" class="popup__input
+        popup__input_description popup__input_description-profile" id="user-description" name="description">
+        <span id="user-description-error" class="error"></span>
+        <button type="submit" class="popup__save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup__card">
+    <div class="popup__container">
+      <button type="button" class="button"><img src="./images/add-button__plus.svg" alt="Закрыть"
+          class="popup__close popup__close_card"></button>
+      <h2 class="popup__title popup__title_card">Новое место</h2>
+      <form class="popup__form popup__form_place" name="place" method="POST">
+        <input type="text" required autocomplete="off" minlength="2" maxlength="30" placeholder="Название"
+          class="popup__input popup__input_name popup__input_name-card" id="place-title" name="name">
+        <span id="place-title-error" class="error"></span>
+        <input type="url" required autocomplete="off" placeholder="Ссылка на картинку"
+          class="popup__input popup__input_description popup__input_url-card" id="card-url" name="link">
+        <span id="card-url-error" class="error"></span>
+        <button type="submit" class="popup__save">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup__image">
+    <div class="popup__image-button">
+      <button type="button" class="button"><img src="./images/add-button__plus.svg" alt="Закрыть"
+          class="popup__close popup__close_image"></button>
+      <h2 class="popup__image-name"></h2>
+      <img src="./images/moscow.jpg" class="popup__image-place" alt="">
+    </div>
+  </div>
+
+  <template class="template">
+    <div class="card">
+      <img src="" class="card__image" alt="">
+      <button type="button" class="button button__delete"><img src="./images/trash.svg" class="card__trash"
+          alt="Удалить"></button>
+      <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button type="button" class="button button__like"></button>
+      </div>
+    </div>
+  </template>
+
+  <script type="module" src="./pages/index.js"></script>
+
+</body>
+
+</html>
