@@ -10,12 +10,14 @@ import { FormValidator } from '../scripts/components/FormValidator.js';
 import {
   elements,
   template,
+  profilePopup,
   formUser,
   profileOpenButton,
   profileName,
   profileDescription,
   profileNameInput,
   profileDescriptionInput,
+  cardPopup,
   formCard,
   cardOpenButton,
   cardNameInput,
@@ -78,11 +80,7 @@ newPopupCardForm.setEventListeners();
 cardOpenButton.addEventListener('click', () => {
   newPopupCardForm.open();
   
-  const cardSubmitButton = formCard.querySelector('.popup__save');
-  cardSubmitButton.classList.add(validationConfig.submitButtonClass);
-  cardSubmitButton.disabled = true;
-  cardFormValidator.hideError(formCard, formCard
-    .querySelector(validationConfig.inputSelector));
+  cardFormValidator.clearInputErrors();
 });
 
 
@@ -101,11 +99,7 @@ const profilePopupWithForm = new PopupWithForm('.popup__profile',
     profileNameInput.value = openProfileData.name;
     profileDescriptionInput.value = openProfileData.description;
 
-    const profileSubmitButton = formUser.querySelector('.popup__save');
-    profileSubmitButton.classList.remove(validationConfig.submitButtonClass);
-    profileSubmitButton.disabled = false;
-    profileFormValidator.hideError(formUser, profileNameInput);
-    profileFormValidator.hideError(formUser, profileDescriptionInput);
+    profileFormValidator.clearInputErrors();
   }
 });
 profilePopupWithForm.setEventListeners();

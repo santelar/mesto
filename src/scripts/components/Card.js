@@ -27,8 +27,9 @@ export class Card {
     
     this._setEventListeners();
 
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = this._name;
+    this._img = this._element.querySelector('.card__image');
+    this._img.src = this._link;
+    this._img.alt = this._name;
     this._element.querySelector('.card__title').innerText = this._name;
     return this._element;
   }
