@@ -1,6 +1,7 @@
 import './index.css';
 
-import { initialItems } from '../scripts/utils/initialItems.js';
+import { Api } from '../scripts/components/Api.js';
+import { initialCards } from '../scripts/utils/initialCards.js';
 import { Section } from '../scripts/components/Section.js';
 import { Card } from '../scripts/components/Card.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
@@ -32,6 +33,27 @@ profileFormValidator.enableValidation();
 const cardFormValidator = new FormValidator(validationConfig, formCard);
 cardFormValidator.enableValidation();
 
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-18/cards', {
+  headers: {
+    authorization: 'eaa08385-02d1-499c-a13e-a2b5f60e8932',
+    "content-type": "application/json",
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+
+}); 
+
+
+
+
+
+
+
+
+
 // ///// Шаблоны функций:
 
 // ///// Шаблон - Попап большой картинки
@@ -53,15 +75,32 @@ function handleSubmitButton (popup, buttonSelector) {
   return submitButton;
 }
 
+
+
+const api = new Api({
+  url: "https://mesto.nomoreparties.co/v1/cohort-18/cards",
+  headers: {
+    authorization: 'eaa08385-02d1-499c-a13e-a2b5f60e8932',
+    "content-type": "application/json",
+  }
+});
+const cards = api.getInitialCards();
+cards.then((cardsData) => {
+
+})
+
 // ///// Секция - отрисовка массива карточек
 const section = new Section({
-  items: initialItems,
+  items: initialCards,
   renderer: (data) => {
     const renderNewCard = renderCard (data);
     section.addItem(renderNewCard);
   }
 }, elements);
 section.renderSection();
+
+
+
 
 
 // ///// Создание новой карточки

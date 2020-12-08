@@ -6,7 +6,7 @@ import spetersburgImage from '../../images/piter.jpg';
 import roschaImage from '../../images/roscha_ulitsa_zhelaniy.jpg';
 import kareliaImage from '../../images/karelia.jpg';
 
-export const initialItems = [
+export const initialCards = [
   { name: 'Москва', link: moscowImage},
   { name: 'Байкал', link: baikalImage},
   { name: 'Владивосток', link: vladivostokImage},
