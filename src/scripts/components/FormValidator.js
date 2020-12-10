@@ -59,3 +59,6 @@ export class FormValidator {
     this._setEventListeners();
   }
 }
+
+
+//resetForm();
