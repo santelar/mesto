@@ -34,7 +34,8 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
+              importLoaders: 1,
+              devtool: 'eval-source-map'
             }
           },
           'postcss-loader'

@@ -45,11 +45,11 @@
       <h2 class="popup__title popup__title_name">Редактировать профиль</h2>
       <form class="popup__form popup__form_user" id="form-user" name="user" method="POST">
         <input type="text" required autocomplete="off" minlength="2" maxlength="40"
-          class="popup__input popup__input_name popup__input_name-profile" id="user-name" name="name">
-        <span id="user-name-error" class="error"></span>
+          class="popup__input popup__input_name popup__input_name-profile" id="name" name="name">
+        <span id="name-error" class="error"></span>
         <input type="text" required autocomplete="off" minlength="2" maxlength="200" class="popup__input
-        popup__input_description popup__input_description-profile" id="user-description" name="description">
-        <span id="user-description-error" class="error"></span>
+        popup__input_description popup__input_description-profile" id="job" name="info">
+        <span id="job-error" class="error"></span>
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
     </div>
@@ -61,11 +61,11 @@
       <h2 class="popup__title popup__title_card">Новое место</h2>
       <form class="popup__form popup__form_place" name="place" method="POST">
         <input type="text" required autocomplete="off" minlength="2" maxlength="30" placeholder="Название"
-          class="popup__input popup__input_name popup__input_name-card" id="place-title" name="name">
-        <span id="place-title-error" class="error"></span>
+          class="popup__input popup__input_name popup__input_name-card" id="picName" name="name">
+        <span id="picName-error" class="error"></span>
         <input type="url" required autocomplete="off" placeholder="Ссылка на картинку"
-          class="popup__input popup__input_description popup__input_url-card" id="card-url" name="link">
-        <span id="card-url-error" class="error"></span>
+          class="popup__input popup__input_description popup__input_url-card" id="picLink" name="link">
+        <span id="picLink-error" class="error"></span>
         <button type="submit" class="popup__save">Создать</button>
       </form>
     </div>
@@ -85,8 +85,8 @@
       <h2 class="popup__title popup__title_avatar">Обновить аватар</h2>
       <form class="popup__form popup__form_avatar" name="avatar" method="POST">
         <input type="url" required autocomplete="off" placeholder="Ссылка на аватар"
-          class="popup__input popup__input_name popup__input_name-avatar" id="avatar-url" name="link">
-        <span id="avatar-url-error" class="error"></span>
+          class="popup__input popup__input_name popup__input_name-avatar" id="picLink" name="link">
+        <span id="picLink-error" class="error"></span>
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
     </div>
