@@ -11,7 +11,7 @@ import { FormValidator } from '../scripts/components/FormValidator.js';
 import {
   //elements,
   //template,
-  cardListSelector,
+  containerSelector,
   popupWithSubmitSelector,
   cardSelector,
   likesCounterSelector,
@@ -57,10 +57,7 @@ const api = new Api({
     authorization: 'eaa08385-02d1-499c-a13e-a2b5f60e8932',
     'Content-Type': 'application/json'
   }
-}).then(res => res.json())
-.then((result) => {
-  console.log(result);
-}); 
+});
 
 // Api - подгрузка данных
 const initialUserInfo = api.getUserInfo();
@@ -69,25 +66,22 @@ initialUserInfo
     profileName.textContent = user.name;
     profileDescription.textContent = user.about;
     profileAvatar.src = user.avatar;
-    userId = user._id;
+    //userId = user._id;
   })
   .catch((err) => console.log(err));
 
 // Секция карточек
-  const cardList = new Section({
+  const section = new Section({
     renderer: (data) => {
       const makeNewCard = makeCard(data);
-      cardList.addNewItem(makeNewCard);
+      section.addNewItem(makeNewCard);
     }
-  }, cardListSelector);
+  }, containerSelector);
 
 // Рендерим карточки
-  const renderCards = api.getInitialCards();
-  renderCards
-    .then((data) => {
-      cardList.renderItems(data);
-  })
-    .catch((err) => console.log(err));
+  api.getInitialCards().then((data) => {
+    section.renderSection(data);
+  });
 
 const popupDeleteSubmit = new PopupWithSubmit(popupWithSubmitSelector, {
   handleFormSubmit: ({data, cardElement}) => {
@@ -126,8 +120,7 @@ function makeCard (data) {
           likesCounter.textContent = res.likes.length;
           card.updateLikes(res.likes);
       })
-    },
-    userId: userId
+    }, userId
   });
   const cardElement = card.generateCard();
 
@@ -165,8 +158,8 @@ const popupEdProf = new PopupWithForm(popupEdProfSelector,
       profileSubmitButton.classList.remove(popupSubmitDisabledSelector);
       profileSubmitButton.disabled = false;
 
-      editProfileFormValidator.hideInputError(formUser, nameInput);
-      editProfileFormValidator.hideInputError(formUser, jobInput);
+      profileFormValidator.hideError(formUser, nameInput);
+      profileFormValidator.hideError(formUser, jobInput);
     }
   });
   popupEdProf.setEventListeners();
@@ -191,15 +184,15 @@ const popupAddPic = new PopupWithForm(popupAddPicSelector,
         return makeNewCard
       })
       .then((card) => {
-        cardList.addItem(card);
+        section.addItem(card);
       })
       .catch((err) => console.log(err))
       .finally(() => {cardSubmitButton.textContent = 'Создать'})
     },
   handleDefaultFormValues: () => {
-    cardFormValidator.hideInputError(formCard, cardNameInput);
-    cardFormValidator.hideInputError(formCard, cardDescriptionInput);
-    cardFormValidator.hideInputError(formCard,
+    cardFormValidator.hideError(formCard, cardNameInput);
+    cardFormValidator.hideError(formCard, cardDescriptionInput);
+    cardFormValidator.hideError(formCard,
       formCard.querySelector(validationConfig.inputSelector));
   }
 });
@@ -230,7 +223,7 @@ const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, {
       .finally(() => {avatarSubmitButton.textContent = 'Сохранить'})
     },
   handleDefaultFormValues: () => {
-    avatarFormValidator.hideInputError(formAvatar,
+    avatarFormValidator.hideError(formAvatar,
       formAvatar.querySelector(validationConfig.inputSelector));
     }
 })

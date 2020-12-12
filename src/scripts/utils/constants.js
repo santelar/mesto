@@ -1,6 +1,6 @@
 //export const elements = document.querySelector('.elements');
 //export const template = document.querySelector('.template');
-export const cardListSelector = '.elements';
+export const containerSelector = '.elements';
 export const popupWithSubmitSelector = '.popup__confirm';
 export const cardSelector = '.template';
 export const likesCounterSelector = '.card__like-counter';
@@ -10,11 +10,7 @@ export const popupSubmitDisabledSelector = 'popup__save_invalid';
 export const popupAddPicSelector = '.popup__card';
 export const popupEditAvatarSelector = '.popup__avatar';
 
-
-
-
-
-export let userId = null;
+export const userId = 'a306e5bd837d05cd707481ff';
 
 export const profilePopup = document.querySelector('.popup__profile');
 export const profileAvatarContainer = document.querySelector('.profile__avatar-container');

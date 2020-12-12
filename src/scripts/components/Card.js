@@ -41,7 +41,7 @@ export class Card {
       this._handleCardDelete(evt.target.closest('.card'));
     });
     this._cardLike.addEventListener('click', this._handleLikes.bind(this));
-    this._cardImg.addEventListener('click', this._handleCardClick);
+    this._cardImage.addEventListener('click', this._handleCardClick);
   }
 
   generateCard() {
