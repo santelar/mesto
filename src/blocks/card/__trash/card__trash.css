@@ -4,6 +4,7 @@
   position: relative;
   top: -238px;
   left: 118px;
+  visibility: hidden;
 }
 
 .card__trash:hover {

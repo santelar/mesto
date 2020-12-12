@@ -12,6 +12,7 @@ module.exports = {
     filename: 'main.js',
     publicPath: '',
   },
+  devtool: 'eval-source-map',
   mode: 'development',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
@@ -35,7 +36,6 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              devtool: 'eval-source-map'
             }
           },
           'postcss-loader'
