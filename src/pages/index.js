@@ -1,11 +1,12 @@
 //import './index.css';
 
 import { Api } from '../scripts/components/Api.js';
-import { initialCards } from '../scripts/utils/initialCards.js';
+//import { initialCards } from '../scripts/utils/initialCards.js';
 import { Section } from '../scripts/components/Section.js';
 import { Card } from '../scripts/components/Card.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
+import { PopupWithSubmit } from '../scripts/components/PopupWithSubmit.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import { FormValidator } from '../scripts/components/FormValidator.js';
 import {
@@ -30,7 +31,7 @@ import {
   popupAvatarInput,
   validationConfig
 } from '../scripts/utils/constants.js';
-
+//let userId = null;
 
 // ///// Запуск валидации форм
 const profileFormValidator = new FormValidator(validationConfig, formUser);
@@ -60,7 +61,7 @@ const renderInitialCards = (cards) => {
   const section = new Section({
     items: cards,
     renderer: (item) => {
-      const card = new Card (item, userId, template,
+      const card = new Card (item, template,
         {handleCardClick: (name, link) => {
           popupWithImage.open(name, link);
           },
@@ -100,7 +101,7 @@ api.getUserInfo().then((data => {
 // Обработчик открытия попапа аватара
 profileAvatarContainer.addEventListener('click', function() {
   popupEditAvatar.open();
-  //avatarFormValidator.resetForm();
+  avatarFormValidator.resetForm();
   popupEditAvatar.resetWaitSubmitButton();
 })
 // Обработчик редактирования аватара
@@ -126,7 +127,7 @@ const userInfo = new UserInfo({
 });
 profileOpenButton.addEventListener('click', function() {
   popupEditProfile.open();
-  //profileFormValidator.resetForm();
+  profileFormValidator.resetForm();
   popupEditProfile.resetloadSubmit();
   const currentInfo = userInfo.getUserInfo();
 
@@ -157,7 +158,7 @@ popupEditProfile.setEventListeners();
 // Обработчик открытия попапа добавления карточки
 cardOpenButton.addEventListener('click', function() {
   popupAddCard.open();
-  //cardFormValidator.resetForm();
+  cardFormValidator.resetForm();
   popupAddCard.resetWaitSubmitButton();
 })
 // Обработчик добавления карточки
@@ -167,7 +168,7 @@ const formSubmitCard = (evt) => {
   const linkCard = cardDescriptionInput.value;
   api.addCard(titleCard, linkCard)
     .then(dataCard=> {
-    const card = new Card (dataCard, userId, template,  
+    const card = new Card (dataCard, template,  
       {
         handleCardClick: (name, link) => {
           popupWithImage.open(name, link);
@@ -216,8 +217,7 @@ const formConfirm = (evt, card) => {
     });
 }
 // Листенеры по подтверждению
-const popupConfirm = new PopupWithSubmit(popupConfirmSelector, popupCloseButtonSelector, 
-  (evt, card) => {
+const popupConfirm = new PopupWithSubmit('.popup__confirm', (evt, card) => {
     formConfirm(evt, card)
   }
 )
