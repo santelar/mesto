@@ -1,5 +1,4 @@
-//export const elements = document.querySelector('.elements');
-//export const template = document.querySelector('.template');
+
 export const containerSelector = '.elements';
 export const popupWithSubmitSelector = '.popup__confirm';
 export const cardSelector = '.template';

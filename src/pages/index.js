@@ -1,5 +1,4 @@
 import './index.css';
-
 import { Api } from '../scripts/components/Api.js';
 import { Section } from '../scripts/components/Section.js';
 import { Card } from '../scripts/components/Card.js';
@@ -9,8 +8,6 @@ import { PopupWithSubmit } from '../scripts/components/PopupWithSubmit.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import { FormValidator } from '../scripts/components/FormValidator.js';
 import {
-  //elements,
-  //template,
   containerSelector,
   popupWithSubmitSelector,
   cardSelector,
@@ -66,7 +63,6 @@ initialUserInfo
     profileName.textContent = user.name;
     profileDescription.textContent = user.about;
     profileAvatar.src = user.avatar;
-    //userId = user._id;
   })
   .catch((err) => console.log(err));
 
@@ -74,7 +70,7 @@ initialUserInfo
   const section = new Section({
     renderer: (data) => {
       const makeNewCard = makeCard(data);
-      section.addNewItem(makeNewCard);
+      section.addItem(makeNewCard);
     }
   }, containerSelector);
 
@@ -184,7 +180,7 @@ const popupAddPic = new PopupWithForm(popupAddPicSelector,
         return makeNewCard
       })
       .then((card) => {
-        section.addItem(card);
+        section.addNewItem(card);
       })
       .catch((err) => console.log(err))
       .finally(() => {cardSubmitButton.textContent = 'Создать'})

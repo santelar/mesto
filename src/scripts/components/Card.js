@@ -50,7 +50,7 @@ export class Card {
 
     this._cardImage = this._element.querySelector('.card__image');
     this._cardLike = this._element.querySelector('.button__like');
-    this._cardDelete = this._element.querySelector('.button__delete');
+    this._cardDelete = this._element.querySelector('.card__trash');
 
 
     this._cardImage.src = this._link;
