@@ -32,7 +32,7 @@ export class Popup {
   setEventListeners() {
     this._popup.querySelector('.popup__close')
       .addEventListener('click', this.close.bind(this));
-    this._popup.addEventListener('click', this._handlerOverlayClose.bind(this));
+    this._popup.addEventListener('mousedown', this._handlerOverlayClose.bind(this));
   }
 
 }

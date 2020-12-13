@@ -8,23 +8,23 @@ export class FormValidator {
     this._inputErrorClass = validationConfig.inputErrorClass;
   }
 
-  _showError(_formElement, _input) {
+  _showError(_input) {
     this._errorElement = this._formElement.querySelector(`#${_input.id}-error`);
     this._errorElement.textContent = _input.validationMessage;
     _input.classList.add(this.validationConfig.inputErrorClass);
   }
   
-  hideError(_formElement, _input) {
+  hideError(_input) {
     this._errorElement = this._formElement.querySelector(`#${_input.id}-error`);
     this._errorElement.textContent = '';
     _input.classList.remove(this.validationConfig.inputErrorClass);
   }
   
-  _checkInputValidity(_formElement, _input) {
+  _checkInputValidity(_input) {
     if (_input.checkValidity()) {
-      this.hideError(_formElement, _input);
+      this.hideError(_input);
     } else {
-      this._showError(_formElement, _input);
+      this._showError(_input);
     }    
   }
   
@@ -38,11 +38,21 @@ export class FormValidator {
     }
   }
   
+  disableSubmitBtn(popupSubmitDisabledSelector) {
+    this._buttonElement.classList.add(popupSubmitDisabledSelector);
+    this._buttonElement.disabled = true;
+  }
+
+  enabledSubmitBtn(popupSubmitDisabledSelector) {
+    this._buttonElement.classList.remove(popupSubmitDisabledSelector);
+    this._buttonElement.disabled = false;
+  }
+
   _setEventListeners() {
     this._inputElements.forEach((_input) => {
       _input.addEventListener('input', (event) => {
-        this._checkInputValidity(this._formElement, event.target);
-        this._toggleButtonState(this._formElement, this._buttonElement);
+        this._checkInputValidity(event.target);
+        this._toggleButtonState();
       });
     });
   }

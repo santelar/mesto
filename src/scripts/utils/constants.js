@@ -9,8 +9,6 @@ export const popupSubmitDisabledSelector = 'popup__save_invalid';
 export const popupAddPicSelector = '.popup__card';
 export const popupEditAvatarSelector = '.popup__avatar';
 
-export const userId = 'a306e5bd837d05cd707481ff';
-
 export const profilePopup = document.querySelector('.popup__profile');
 export const profileAvatarContainer = document.querySelector('.profile__avatar-container');
 export const profileAvatar = document.querySelector('.profile__avatar');
