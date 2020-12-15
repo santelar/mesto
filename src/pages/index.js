@@ -41,7 +41,7 @@ import {
   avatarSubmitButton,
   validationConfig
 } from '../scripts/utils/constants.js';
-//let userId = null;
+
 
 // Api - идентификация
 const api = new Api({
@@ -70,7 +70,6 @@ const section = new Section({
   }
 }, containerSelector);
 
-
 Promise.all([
   api.getUserInfo(),
   api.getInitialCards(),
@@ -83,18 +82,11 @@ Promise.all([
   })
 .catch((err) => console.log(err));
 
-/*
-const popupDeleteSubmit = new PopupWithSubmit(popupWithSubmitSelector, {
-  handleFormSubmit: ({data, cardElement}) => {
-    api.deleteCard(data._id)
-    .then(cardElement.remove())
-    .catch((err) => console.log(err));
-  }
-});
-*/
-
 const popupDeleteSubmit = new PopupWithSubmit(popupWithSubmitSelector);
 popupDeleteSubmit.setEventListeners();
+
+const popupWithImage = new PopupWithImage(popupWithImageSelector);
+popupWithImage.setEventListeners();
 
 // Функция создания каждой отдельной карточки
 function makeCard (data) {
@@ -105,6 +97,7 @@ function makeCard (data) {
     },
     //Функционал удаления карточки
     handleCardDelete: (cardId) => {
+      console.log(cardId);
       popupDeleteSubmit.setSubmitAction(() => {
         api.deleteCard(cardId)
         .then(res => card.removeCard())
@@ -137,25 +130,6 @@ function makeCard (data) {
   return cardElement;
 }
 
-//Попап картинки - наполнение данными
-const popupWithImage = new PopupWithImage(popupWithImageSelector);
-popupWithImage.setEventListeners();
-//const userData = new UserInfo({
-  //userName: profileName,
-  //userInfo: profileDescription,
-  //userPic: profileAvatar,
-
-/*
-//Попап картинки - наполнение данными
-const popupWithImage = new PopupWithImage(popupWithImageSelector);
-popupWithImage.setEventListeners();
-const userData = new UserInfo({
-  userName: profileName,
-  userInfo: profileDescription,
-  userPic: profileAvatar,
-});
-*/
-
 ////////////////////////////////////////////////////////////////////
 //   Попап профайла - заполнение, очистка и пр.  ///////////////////
 ////////////////////////////////////////////////////////////////////
@@ -176,14 +150,15 @@ const popupEdProf = new PopupWithForm(popupEdProfSelector,
       nameInput.value = defaultUserData.name;
       jobInput.value = defaultUserData.info;
 
-      profileFormValidato.enabledSubmitBtn(popupSubmitDisabledSelector);
+      profileFormValidator.enabledSubmitBtn(popupSubmitDisabledSelector);
 
       profileFormValidator.hideError(nameInput);
       profileFormValidator.hideError(jobInput);
     }
   });
-  popupEdProf.setEventListeners();
 //Попап профайла - слушатель
+popupEdProf.setEventListeners();
+
 profileOpenButton.addEventListener('click', () => {
   popupEdProf.open();
 });
@@ -216,13 +191,13 @@ const popupAddPic = new PopupWithForm(popupAddPicSelector,
     cardFormValidator.hideError(formCard.querySelector(validationConfig.inputSelector));
   }
 });
-popupAddPic.setEventListeners();
 // Попап добавления картинки - слушатель
+popupAddPic.setEventListeners();
+
 cardOpenButton.addEventListener('click', () => {
   popupAddPic.open();
   cardFormValidator.disableSubmitBtn(popupSubmitDisabledSelector);
 });
-popupAddPic.setEventListeners();
 // Попап добавления картинки - валидация
 const cardFormValidator = new FormValidator(validationConfig, formCard);
 cardFormValidator.enableValidation();
@@ -247,8 +222,9 @@ const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, {
     avatarFormValidator.hideError(formAvatar.querySelector(validationConfig.inputSelector));
     }
 })
-popupEditAvatar.setEventListeners();
 // Попап изменения аватара - слушатель
+popupEditAvatar.setEventListeners();
+
 avatarEditButton.addEventListener('click', () => {
   popupEditAvatar.open();
   avatarFormValidator.disableSubmitBtn(popupSubmitDisabledSelector);
