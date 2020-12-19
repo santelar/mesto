@@ -1,8 +1,8 @@
 {
   "name": "mesto",
   "version": "1.0.0",
-  "description": "**Проект: Меsto - Russia**\r https://santelar.github.io/mesto/",
-  "main": "webpack.config.js",
+  "description": "**Проект: Меsto - Russia**",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
